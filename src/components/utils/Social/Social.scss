@@ -1,0 +1,41 @@
+@import "../../../assets/styles/variables/global";
+
+.social-networks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &_item {
+        margin: 0 18px;
+        a {
+            display: block;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 16px;
+            color: $white;
+            i {
+                transition: all .4s cubic-bezier(0.5, 0, 0.1, 1);
+            }
+            &:hover {
+                i {
+                    transform: scale(1.4);
+                }
+                &.social-networks_item_facebook {
+                    color: #3b5998;    
+                }
+                &.social-networks_item_instagram {
+                    color: #c13584;    
+                }
+                &.social-networks_item_twitter {
+                    color: #1da1f2;    
+                }
+                &.social-networks_item_linkedin {
+                    color: #0077b5;    
+                }
+            }
+        }
+    }
+}

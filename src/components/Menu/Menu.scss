@@ -1,0 +1,132 @@
+@import "../../assets/styles/variables/global";
+@import "../../assets/styles/mixins/utils";
+
+.close-menu {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    &::before {
+        content: "";
+        width: 26px;
+        height: 2px;
+        display: block;
+        background: #fff;
+        transform: rotate(-45deg);
+        position: absolute;
+        top: 50%;
+        left: 3px;
+        transition: all 0.2s;
+    }
+    &::after {
+        content: "";
+        width: 26px;
+        height: 2px;
+        display: block;
+        background: #fff;
+        transform: rotate(45deg);
+        position: absolute;
+        top: 50%;
+        left: 3px;
+        transition: all 0.2s;
+    }
+    &:hover {
+        &::after,
+        &::before {
+            transform: rotate(0);
+        }
+    }
+}
+
+.main-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: $black;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s;
+    transition-delay: 0s;
+    padding: 32px;
+    .open & {
+        transition: all 1s;
+        opacity: 1;
+        visibility: visible;
+    }
+    &_top {
+        display: flex;
+        justify-content: space-between;
+        &__logo {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #333333;
+            padding: 10px;
+        }
+    }
+    &_list {
+        height: calc(100vh - 220px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__nav {
+        text-align: center;
+        width: 100%;
+        list-style: none;
+        font-family: $font-open-sans;
+        font-weight: 600;
+        transition: all .2s;
+        max-width: 620px;
+        li {
+            text-transform: uppercase;
+            font-size: rem(28);
+            margin: 5px 0;
+            a {
+                padding: 10px 0;
+                text-decoration: none;
+                color: $white;
+            }
+        }
+    }
+    @include desktop {
+        &__nav {
+            li {
+                font-size: rem(34);
+                a {
+                    transition: all 0.2s;
+                    display: inline-block;
+                    width: 100%;
+                    position: relative;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        width: 100%;
+                        transition: all .5s;
+                        background-color: $pink;
+                        z-index: 1;
+                        opacity: 0;
+                    }
+                    span {
+                        position: relative;
+                        z-index: 2;
+                    }
+                    &:hover {
+                        // background-color: $pink;
+                        &::before {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

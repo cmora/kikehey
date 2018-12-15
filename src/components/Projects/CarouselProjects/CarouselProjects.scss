@@ -1,0 +1,54 @@
+@import "../../../assets/styles/variables/global";
+@import "../../../assets/styles/mixins/utils";
+
+.projects-carousel {
+    margin: 2rem 0;
+    &_wrap {
+        position: relative;
+    }
+    .slick {
+        &-arrow {
+            display: none !important;
+            @include desktop {
+                display: block !important;
+            }
+        }
+        &-slide {
+            width: 80vw;
+            padding-right: 12px;
+            opacity: 0.4;
+            transition: opacity .2s;
+            &.slick-active {
+                opacity: 1;
+            }
+        }
+    }
+    @include tablet-portrait {
+        .slick {
+            &-slide {
+                width: 40vw;
+            }
+        }
+    }
+    @include desktop {
+        .slick-slider {
+            .slick-arrow {
+                top: -60px;
+                right: 10px !important;
+                left: inherit !important;
+                height: 40px;
+                &.slick-prev {
+                    right: 50px !important;
+                }
+            }
+        }
+        .noSlick {
+            display: flex;
+            margin: 0 -10px;
+        }
+        &_noslick_item {
+            width: 25%;
+            padding: 0 10px;
+        }
+    }
+}

@@ -1,0 +1,48 @@
+@import "../../../assets/styles/variables/global";
+@import "../../../assets/styles/mixins/utils";
+
+.experience-item {
+    border-bottom: 1px solid$pink;
+    position: relative;
+    padding-bottom: 1rem;
+    min-height: 250px;
+    &::after {
+        content: "";
+        height: 8px;
+        width: 8px;
+        display: block;
+        background-color: $pink;
+        border-radius: 50%;
+        position: absolute;
+        bottom: -4px;
+        right: 0;
+    }
+    &_date {
+        color: $pink;
+        font-size: rem(10);
+        text-transform: uppercase;
+        font-family: $font-roboto-slab;
+        font-weight: 400;
+        margin-bottom: 12px;
+    }
+    &_company {
+        font-size: rem(20);
+        font-weight: 400;
+        text-transform: none;
+        line-height: 1.2;
+    }
+    &_role {
+        font-size: rem(14);
+        margin-bottom: 8px;
+        color: $white;
+    }
+    &_logo {
+        margin: 1rem 0;
+        img {
+            max-height: 20px;
+        }
+    }
+    &_description {
+        font-size: rem(14);
+    }
+}

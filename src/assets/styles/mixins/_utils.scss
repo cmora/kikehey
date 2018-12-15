@@ -1,0 +1,45 @@
+// Remove units from a number
+@function strip-unit($number) {
+  @if type-of($number) == ‘number’ and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+/**
+ * Converts units to rem
+ * @param $number to convert, can have any unit
+ * @param $base html base unit
+ */
+@function rem($number, $base: 16) {
+  // Just in case the dev don't use pixels
+  $number-unitless: strip-unit($number);
+  $base-unitless: strip-unit($base);
+
+  @return $number-unitless / $base-unitless * 1rem;
+}
+
+@mixin phone {
+  @media (min-width: #{$phone-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-portrait {
+  @media (min-width: #{$tablet-portrait-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+

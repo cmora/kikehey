@@ -1,0 +1,12 @@
+@import "../../../assets/styles/variables/global";
+@import "../../../assets/styles/mixins/utils";
+
+.projects-grid {
+    &_list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &_item {
+        flex-basis: 33.333%;
+    }
+}

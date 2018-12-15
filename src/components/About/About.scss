@@ -1,0 +1,36 @@
+@import "../../assets/styles/variables/global";
+@import "../../assets/styles/mixins/utils";
+
+.about-block {
+    &_resume {
+        text-align: left;
+        a {
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            background-color: $pink;
+            padding: 0 18px;
+            color: $white;
+            font-family: $font-open-sans;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            img {
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 8px;
+            }
+        }
+        @include desktop {
+            text-align: center;
+            a {
+                padding: 0 195px;
+                &:hover {
+                    opacity: 0.8;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

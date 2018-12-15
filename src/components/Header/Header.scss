@@ -1,0 +1,44 @@
+@import "../../assets/styles/variables/global";
+
+#header {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: $black;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    padding: 19px 15px;
+    z-index: 1000;
+    &.open {
+        z-index: 999999;
+    }
+}
+
+.open-menu {
+    z-index: 4;
+    width: 25px;
+    overflow: hidden;
+    cursor: pointer;
+    span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background: $white;
+        margin-top: 6px;
+        float: right;
+        clear: both;
+        transition: all 150ms ease-out;
+        &:first-child {
+            margin-top: 0;
+        }
+        &:nth-of-type(3) {
+            width: 70.53%;
+        }
+    }
+    &:hover {
+        span {
+            width: 100%;
+        }
+    }
+}

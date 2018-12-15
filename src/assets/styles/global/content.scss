@@ -1,0 +1,243 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: $font-open-sans;
+  height: 100%;
+  background-color: $black;
+  color: $body;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: $black; 
+}
+::-webkit-scrollbar-thumb {
+  background: $pink; 
+}
+
+img {
+  display: inline-block;
+  max-width: 100%;
+}
+
+p {
+  margin-bottom: 1rem;
+  font-size: rem(14);
+  line-height: 1.6;
+}
+
+a {
+  color: $pink;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-roboto-slab;
+  font-weight: 600;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: $white;
+}
+
+h1 {
+  font-size: rem(54);
+  @include desktop {
+    font-size: rem(80);
+  }
+}
+
+h2 {
+  font-size: rem(44);
+  @include desktop {
+    font-size: rem(70);
+  }
+}
+
+h3 {
+  font-size: rem(36);
+  @include desktop {
+    font-size: rem(44);
+  }
+}
+
+h4 {
+  font-size: rem(28);
+  @include desktop {
+    font-size: rem(36);
+  }
+}
+
+h5 {
+  font-size: rem(22);
+  @include desktop {
+    font-size: rem(28);
+  }
+}
+
+h6 {
+  font-size: rem(16);
+  @include desktop {
+    font-size: rem(18);
+  }
+}
+
+.row {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.column {
+  padding: 0 20px;
+  width: 100%;
+  @include desktop {
+    padding: 0 30px;
+  }
+}
+
+#container {
+  position: relative;
+}
+
+// CONTENT BLOCKS
+.content-block {
+  margin: 4rem 0;
+  &__title {
+    max-width: 50%;
+    &::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 5px;
+      background-color: $pink;
+      margin-top: 5px;
+    }
+  }
+  &__description {
+    p {
+      font-size: rem(14);
+    }
+  }
+  &__icon {
+    position: relative;
+    width: 100%;
+    > div {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      bottom: 22px;
+      right: 0;
+      transition: all .2s;
+      opacity: 0;
+      visibility: hidden;
+    }
+    &.carousel {
+      .icon-grid {
+        opacity: 1;
+        visibility: visible;
+      }
+      .icon-carousel {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    &.grid {
+      .icon-carousel {
+        opacity: 1;
+        visibility: visible;
+      }
+      .icon-grid {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+  @include desktop {
+    margin: 210px 0;
+    &__title {
+      margin-bottom: 46px;
+      &::after {
+        width: 120px;
+        height: 7px;
+      }
+    }
+    &__icon {
+      display: none;
+    }
+  }
+}
+
+// SLICK JS
+.slick-slider {
+  .slick-arrow {
+    display: block;
+    position: absolute;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 30px;
+    height: 100%;
+    border: none;
+    z-index: 10;
+    outline: none;
+    text-indent: -9999px;
+    top: 0;
+    cursor: pointer;
+    &:hover {
+      &::before {
+        border-color: $pink;
+      }
+    }
+    &::before {
+      content: "";
+      display: block;
+      width: 12px;
+      height: 12px;
+      border: 3px solid $white;
+      transform: rotate(-45deg);
+      transition: all 0.2s;
+    }
+    &.slick-prev {
+      left: -20px;
+      &::before {
+        border-bottom: none;
+        border-right: none;
+      }
+    }
+    &.slick-next {
+      right: -20px;
+      &::before {
+        border-top: none;
+        border-left: none;
+      }
+    }
+    &.slick-disabled {
+      &:hover {
+        &::before {
+          border-color: $white;
+        }
+      }
+      &::before {
+        opacity: 0.2;
+      }
+    }
+  }
+}

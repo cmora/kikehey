@@ -1,0 +1,93 @@
+@import "../../assets/styles/variables/global";
+@import "../../assets/styles/mixins/utils";
+
+.hero-intro {
+    background-size: auto 600px;
+    background-position: -160px 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    &_img {
+        position: absolute;
+        width: 410px;
+        height: auto;
+        left: -170px;
+    }
+    &_image {
+        width: 185px;
+        display: inline-flex;
+    }
+    &_mouse {
+        position: absolute;
+        box-sizing: border-box;
+        left: 50%;
+        bottom: 50px;
+        width: 30px;
+        margin-left: -15px;
+        height: 48px;
+        border-radius: 15px;
+        border: 2px solid $white;
+        transform: translateZ(0);
+        display: none;
+        &__wheel {
+            position: absolute;
+            left: 50%;
+            top: 8px;
+            margin-left: -2px;
+            width: 4px;
+            height: 9px;
+            background: $pink;
+            border-radius: 2px;
+            animation: mouse-wheel 1.25s infinite linear;
+            transform-origin: 50% 0%;
+        }
+    }
+    &_arrow {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        border: 3px solid $white;
+        width: 10px;
+        height: 10px;
+        border-top: 0;
+        border-left: 0;
+        transform: rotate(45deg);
+        margin-left: -5px;
+    }
+    @include tablet {
+        &_img {
+            width: auto;
+            height: 100%;
+            left: calc(50% - 500px);
+        }
+    }
+    @include desktop {
+        &_img {
+            width: auto;
+            height: 110%;
+            left: calc(50% - 700px);
+        }
+        &_arrow {
+            display: none;
+        }
+        &_mouse {
+            display: block;
+        }
+    }
+}
+
+@keyframes mouse-wheel {
+    0%,to {
+        transform: scaleY(.4) translateY(0)
+    }
+
+    20% {
+        transform: scaleY(1) translateY(0)
+    }
+
+    60% {
+        transform: scaleY(.4) translateY(12px)
+    }
+}

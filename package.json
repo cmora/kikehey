@@ -4,8 +4,7 @@
   "description": "Kike Peña - Portfolio",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
-    "dev": "npm-run-all --parallel open:src lint:watch test:watch",
-    "start": "npm-run-all build",
+    "start": "npm-run-all --parallel open:src lint:watch test:watch",
     "open:src": "babel-node tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",

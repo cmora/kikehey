@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import CarouselProjects from './CarouselProjects/CarouselProjects';
 import GridProjects from './GridProjects/GridProjects';
 import { isMobile } from 'react-device-detect';
-const iconGrid = require('../../assets/images/icon-grid.svg');
-const iconCarousel = require('../../assets/images/icon-Carousel.svg');
+// const iconGrid = require('../../assets/images/icon-grid.svg');
+// const iconCarousel = require('../../assets/images/icon-Carousel.svg');
 
 import './Projects.scss';
 
@@ -39,10 +39,10 @@ class Projects extends React.Component {
             </h2>
             <div className={`content-block__icon ${flavor}`} >
               <div className="icon-grid" onClick={() => this.changeFlavor('grid')}>
-                <img src={iconGrid} />
+                <img src="" />
               </div>
               <div className="icon-carousel" onClick={() => this.changeFlavor('carousel')}>
-                <img src={iconCarousel} />
+                <img src="" />
               </div>
             </div>
             <p className="content-block__description">

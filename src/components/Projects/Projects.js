@@ -39,10 +39,10 @@ class Projects extends React.Component {
             </h2>
             <div className={`content-block__icon ${flavor}`} >
               <div className="icon-grid" onClick={() => this.changeFlavor('grid')}>
-                <img src="" />
+                <img src={iconGrid} />
               </div>
               <div className="icon-carousel" onClick={() => this.changeFlavor('carousel')}>
-                <img src="" />
+                <img src={iconCarousel} />
               </div>
             </div>
             <p className="content-block__description">

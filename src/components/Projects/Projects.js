@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import CarouselProjects from './CarouselProjects/CarouselProjects';
 import GridProjects from './GridProjects/GridProjects';
 import { isMobile } from 'react-device-detect';
-// const iconGrid = require('../../assets/images/icon-grid.svg');
-// const iconCarousel = require('../../assets/images/icon-Carousel.svg');
+const iconGrid = require('../../assets/images/icon-grid.svg');
+const iconCarousel = require('../../assets/images/icon-carousel.svg');
 
 import './Projects.scss';
 

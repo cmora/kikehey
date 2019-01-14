@@ -1,8 +1,8 @@
 const user = 'c.mora@cristhianmora.com';
-const refreshToken = '1/aheIn4bnkhZdldlDTjdWg0gC6hWbZCXgi5KBM9p244k';
-const accessToken = 'ya29.GluxBM7tMEA5JHF_ZHP3llgi0D0deJqac3zeUYKJrr-w366Zrx1bW4kni74pPyDgDlYy1Q93URPdYCsw1I7ETcwlbvH_I2_w-SdBVqg6J441y7m5sVcYrY9UjFEJ';
-const clientId = '957044810873-iurajcga4g9k2t7857a49o830i6pg9gq.apps.googleusercontent.com';
-const clientSecret = 'YSy-bSyucTCzs42zV6k2-GIX';
+const refreshToken = '1/wYYfm8d3JOToFnfpKdwyncL1J9JfYjz4q8GgLJZqtTI';
+const accessToken = 'ya29.Glt2BjfcpgosfC79bxoCFOin_b1kN1_xJiBg_kcWZGWiUOpTZ151NGUWm9UhKQR1eCrPGVab2pk5jRc4CvdyeMl290QMjsEaIoGP-h2oO5fpulngsNBPp0uUaLu2';
+const clientId = '358406048434-7a7tv8emnsvoq2oofr48c2e9p701ghvv.apps.googleusercontent.com';
+const clientSecret = 'MACpMOV8mGhNnlpxD2k2SIGb';
 
 export default {
   user,

@@ -18,7 +18,10 @@ class Contact extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
-      open: false
+      open: false,
+      showMessage: false,
+      user: null,
+      sending: true
     };
   }
 
@@ -47,13 +50,17 @@ class Contact extends React.Component {
         name,   
         email,  
         subject,
-        messsage: message
+        message
       }
     }).then((response)=>{
       if (response.data.msg === 'success'){
-        alert("Message Sent."); 
+        const { user } = response.data;
+        this.setState({
+          showMessage: true,
+          user
+        })
         this.resetForm();
-      } else if(response.data.msg === 'fail'){
+      } else if(response.data.msg === 'error'){
         alert("Message failed to send.");
       }
     });
@@ -63,8 +70,55 @@ class Contact extends React.Component {
     document.getElementById('contact-form').reset();
   }
 
+  renderForm() {
+    return (
+      <form
+        className={classnames(
+          'contact-block_form',
+          {
+            ['animated fadeInDown'] : open 
+          }
+        )}
+        onSubmit={this.handleSubmit}
+        method="POST"
+        id="contact-form"
+      >
+        <div className="form-filed">
+          <input type="text" placeholder="Name" name="name" id="name" required />
+        </div>
+        <div className="form-filed">
+          <input type="email" placeholder="Email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
+        </div>
+        <div className="form-filed">
+          <input type="text" placeholder="Subject" name="subject" id="subject" required />
+        </div>
+        <div className="form-filed">
+          <textarea placeholder="Message" name="message" id="message" required />
+        </div>
+        <div className="form-filed">
+          <button type="submit">
+            <img src={ICON_SEND} />
+          </button>
+        </div>
+      </form>
+    );
+  }
+
+  renderMessage() {
+    const { user } = this.state;
+    if (!user) return null;
+
+    return (
+      <div className="message-contact success"> 
+        <h4>Thanks.</h4>
+        <h6>{user.name} - {user.email}</h6>
+        <p>Your message has been successfully sent and i appreciate you contact me. I'll be in contact soon.</p>
+      </div>
+    );
+  }
+
   render () {
-    const { open } = this.state;
+    const { open, showMessage, sending } = this.state;
     const { social } = this.props;
 
     return (
@@ -108,34 +162,20 @@ class Contact extends React.Component {
                   wallace1610@gmail.com</p>
                 </div>
                 <Social items={social} />
-                <form
-                  className={classnames(
-                    'contact-block_form',
-                    {
-                      ['animated fadeInDown'] : open 
-                    }
-                  )}
-                  onSubmit={this.handleSubmit}
-                  method="POST"
-                >
-                  <div className="form-filed">
-                    <input type="text" placeholder="Name" name="name" id="name" required />
+                {(showMessage && !sending) && 
+                  this.renderMessage()
+                }
+                {(!showMessage && !sending) &&
+                  this.renderForm()
+                }
+                {sending &&
+                  <div className="loader-ellipsis">
+                    <div />
+                    <div />
+                    <div />
+                    <div />
                   </div>
-                  <div className="form-filed">
-                    <input type="email" placeholder="Email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
-                  </div>
-                  <div className="form-filed">
-                    <input type="text" placeholder="Subject" name="subject" id="subject" required />
-                  </div>
-                  <div className="form-filed">
-                    <textarea placeholder="Message" name="message" id="message" required />
-                  </div>
-                  <div className="form-filed">
-                    <button type="submit">
-                      <img src={ICON_SEND} />
-                    </button>
-                  </div>
-                </form>
+                }
               </div>
             </div>
           </div>

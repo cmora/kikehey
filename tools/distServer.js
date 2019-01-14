@@ -21,14 +21,29 @@ app.get('*', (req, res) => {
 });
 
 app.post('/contact', (req, res) => {
-  const { email = '', name = '', message = '' } = req.body;
+  const {
+    email = '',
+    name = '', 
+    message = '', 
+    subject = ''
+  } = req.body;
 
-  mailer({ email, name, text: message }).then(() => {
+  mailer({ email, name, message, subject }).then(() => {
     console.log(`Sent the message "${message}" from <${name}> ${email}.`);
-    res.redirect('/#success');
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({
+      msg: 'success',
+      user: {
+        name,
+        email
+      }
+    }));
   }).catch((error) => {
     console.log(`Failed to send the message "${message}" from <${name}> ${email} with the error ${error && error.message}`);
-    res.redirect('/#error');
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({
+      msg: 'error'
+    }));
   });
 });
 

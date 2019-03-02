@@ -19,13 +19,15 @@ const CarouselProjects = ({
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    verticalSwiping: false
     responsive: [
       {
         breakpoint: 768,
         settings: {
           variableWidth: true,
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          verticalSwiping: false
         }
       }
     ]

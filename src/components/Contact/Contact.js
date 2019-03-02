@@ -21,7 +21,7 @@ class Contact extends React.Component {
       open: false,
       showMessage: false,
       user: null,
-      sending: true
+      sending: false
     };
   }
 

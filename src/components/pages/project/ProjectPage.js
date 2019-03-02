@@ -7,6 +7,7 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
 import { get } from 'lodash';
 import { loadProject } from '../../../actions/projectActions';
+import { pageLoading } from '../../../actions/pageActions';
 
 import './ProjectPage.scss';
 
@@ -14,6 +15,7 @@ class ProjectPage extends React.Component {
   constructor(props) {
     super(props); 
     this.handleScroll = this.handleScroll.bind(this);
+    this.handleBack = this.handleBack.bind(this);
     
     this.state = {
       headerPosition: 'translate3d(-50%, 0, 0)',
@@ -28,6 +30,7 @@ class ProjectPage extends React.Component {
   }
 
   componentDidMount() {
+    this.props.pageLoading(false);
     window.scrollTo(0, 0);
     if (isMobile) {
       window.addEventListener('scroll', this.handleScroll);
@@ -39,6 +42,7 @@ class ProjectPage extends React.Component {
   }
 
   componentWillUnmount() {
+    this.props.pageLoading(true);
     if (isMobile) {
       window.removeEventListener('scroll', this.handleScroll); 
     }
@@ -65,10 +69,16 @@ class ProjectPage extends React.Component {
       });
     }
   }
+
+  handleBack() {
+    this.props.pageLoading(true);
+    setTimeout(() => {
+      this.props.history.push({ pathname: `/` });
+    }, 1000);
+  }
   
   render () {
     const { project } = this.props;
-    
     const { headerPosition, opacity, sticky, headHeight, arrowPosition } = this.state;
     const title = get(project, 'title', null);
     const body = get(project, 'body', null);
@@ -106,6 +116,7 @@ class ProjectPage extends React.Component {
           </div>
           <div className="project-page_header__overlay" style={{ opacity: opacity }} />
           <div className="project-page_header__arrow" style={{ opacity: opacity, transform: arrowPosition }} />
+          <div className="project-page_header__close" onClick={this.handleBack} />
         </header>
         <div className="row">
           <div className="column">
@@ -147,7 +158,6 @@ ProjectPage.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     project: state.project
   };
@@ -155,7 +165,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadProject: bindActionCreators(loadProject, dispatch)
+    loadProject: bindActionCreators(loadProject, dispatch),
+    pageLoading: bindActionCreators(pageLoading, dispatch)
   };
 };
 

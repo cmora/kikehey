@@ -1,6 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-
 import './ProjectItem.scss';
 
 
@@ -13,13 +11,11 @@ const ProjectItem = ({
   
   return (
     <div className={`project-item ${flavor}`}>
-      <Link
-        to={{
-          pathname: `/projects/${item.slug}`,
-          state: { projectId: item.id }
-        }}
+      <div
         className="project-item_content"
-        onClick={onHandleProject}
+        onClick={() => {
+          onHandleProject(item)
+        }}
       >
         <div className="project-item_image">
           <img src={item.thumbnail} />
@@ -36,7 +32,7 @@ const ProjectItem = ({
             {item.title}
           </h5>
         }
-      </Link> 
+      </div> 
     </div>
   );
 };

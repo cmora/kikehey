@@ -19,9 +19,7 @@ class HomePage extends React.Component {
     if (hash) {
       this.navigateToBlock(hash);
     }
-    setTimeout(() => {
-      this.props.pageLoading(false);
-    }, 2000);
+    this.props.pageLoading(false);
   }
 
   componentDidUpdate() {
@@ -50,8 +48,14 @@ class HomePage extends React.Component {
     return hash.replace('#','');
   }
 
-  onHandleProject() {
-    // this.props.pageLoading(true);
+  onHandleProject(item) {
+    this.props.pageLoading(true);
+    setTimeout(() => {
+      this.props.history.push({
+        pathname: `/projects/${item.slug}`,
+        state: { projectId: item.id }
+      });
+    }, 1000);
   }
 
   render () {

@@ -6,7 +6,6 @@ import './Loader.scss';
 const Loader = ({
   loading
 }) => {
-  console.log(loading);
   return (
     <div
       className={classnames(

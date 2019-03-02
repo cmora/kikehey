@@ -28,7 +28,7 @@ const Menu = ({
         )}
       >
         <div className="main-menu_top__logo">
-          <Link to="/" onClick={handleNavigation}>
+          <Link to="/" onClick={() => {  handleNavigation(true) }}>
             <img src={logo} />
           </Link>
         </div>
@@ -49,7 +49,7 @@ const Menu = ({
                 pathname: "/",
                 hash: '#about'
               }}
-              onClick={handleNavigation}
+              onClick={() => {  handleNavigation(false) }}
             >
               <span>About</span>
             </Link>
@@ -64,7 +64,7 @@ const Menu = ({
                     pathname: "/",
                     hash: `#${categoryId}`
                   }}
-                  onClick={handleNavigation}
+                  onClick={() => {  handleNavigation(false) }}
                 >
                   <span>{category}</span>
                 </Link>

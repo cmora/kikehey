@@ -21,13 +21,19 @@ class Header extends React.Component {
     });
   }
 
-  handleNavigation() {
+  handleNavigation(toTop) {
     setTimeout(() => {
       this.setState({
         open: !this.state.open
       });
+      if (toTop) {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
     }, 300);
-
   }
 
   render () {

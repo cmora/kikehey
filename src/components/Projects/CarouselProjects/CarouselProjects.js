@@ -19,7 +19,7 @@ const CarouselProjects = ({
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    verticalSwiping: false
+    verticalSwiping: false,
     responsive: [
       {
         breakpoint: 768,

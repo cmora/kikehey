@@ -15,8 +15,8 @@ const Loader = ({
         }
       )}
     >
-      <div className="circle-first"></div>
-      <div className="circle-second"></div>
+      <div className="circle-first" />
+      <div className="circle-second" />
     </div>
   );
 };

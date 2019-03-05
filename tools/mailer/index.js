@@ -26,7 +26,7 @@ const send = ({ email, name, subject, message }) => {
   const from = name && email ? `${name} <${email}>` : `${name || email}`;
   const content = {
     from,
-    to: 'c.mora@cristhianmora.com',
+    to: 'wallace1610@gmail.com',
     subject: `New message from ${from} at Kikehey.com`,
     text: message,
     html: `<b>Subject:</b> ${subject} <br /><br /> <b>Message:</b><p>${message}</p>`,

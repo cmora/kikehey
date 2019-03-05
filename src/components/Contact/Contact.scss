@@ -64,6 +64,9 @@
         opacity: 0;
         visibility: hidden;
         overflow: auto;
+        &::-webkit-scrollbar {
+            width: 0px;
+        }
         .open & {
             opacity: 1;
             visibility: visible;
@@ -157,10 +160,11 @@ button[type='submit'] {
 }
 
 .loader-ellipsis {
-    display: inline-block;
+    display: block;
     position: relative;
     width: 64px;
     height: 64px;
+    margin: 0 auto;
   }
   .loader-ellipsis div {
     position: absolute;

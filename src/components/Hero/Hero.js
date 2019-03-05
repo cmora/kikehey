@@ -1,4 +1,5 @@
 import React from 'react';
+import { isMobile } from 'react-device-detect';
 
 const logo = require('../../assets/images/logo.svg');
 const bg = require('../../assets/images/img-about.png');
@@ -22,17 +23,22 @@ class Hero extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
-    
   }
 
   handleScroll() {
     const velocityBG = 0.5;
     const velocityLogo = 0.3;
     const scrollTop = window.scrollY;
-    this.setState({
-      backgroundPosition: `translate3d(0, ${Math.round((scrollTop) * velocityBG)}px, 0)`,
-      logoPosition: `translate3d(0, ${Math.round((scrollTop) * velocityLogo)}px, 0)`
-    });
+    if (isMobile) {
+      this.setState({
+        logoPosition: `translate3d(0, ${Math.round((scrollTop) * velocityLogo)}px, 0)`
+      });
+    } else {
+      this.setState({
+        backgroundPosition: `translate3d(0, ${Math.round((scrollTop) * velocityBG)}px, 0)`,
+        logoPosition: `translate3d(0, ${Math.round((scrollTop) * velocityLogo)}px, 0)`
+      });
+    }
   }
 
   render() {

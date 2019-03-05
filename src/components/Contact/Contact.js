@@ -27,6 +27,10 @@ class Contact extends React.Component {
 
   handleOpen() {
     this.props.pageLoading(true);
+    const { open } = this.state;
+    if (!open) {
+      this.setState({ showMessage: false });
+    }
     setTimeout(() => {
       this.setState({
         open: !this.state.open
@@ -43,6 +47,7 @@ class Contact extends React.Component {
     const email = document.getElementById('email').value;
     const subject = document.getElementById('subject').value;
     const message = document.getElementById('message').value;
+    this.setState({ sending: true });
     axios({
       method: "POST", 
       url:"http://localhost:3000/contact", 
@@ -59,15 +64,11 @@ class Contact extends React.Component {
           showMessage: true,
           user
         })
-        this.resetForm();
+        this.setState({ sending: false });
       } else if(response.data.msg === 'error'){
         alert("Message failed to send.");
       }
     });
-  }
-
-  resetForm(){
-    document.getElementById('contact-form').reset();
   }
 
   renderForm() {
@@ -187,7 +188,8 @@ class Contact extends React.Component {
 
  
 Contact.propTypes = {
-  social: PropTypes.array.isRequired
+  social: PropTypes.array.isRequired,
+  pageLoading: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {

@@ -30,7 +30,6 @@ class ProjectPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.pageLoading(false);
     window.scrollTo(0, 0);
     if (isMobile) {
       window.addEventListener('scroll', this.handleScroll);
@@ -39,6 +38,9 @@ class ProjectPage extends React.Component {
         this.setState({ headHeight });
       }
     }
+    setTimeout(() => {
+      this.props.pageLoading(false);
+    }, 1500);
   }
 
   componentWillUnmount() {

@@ -4,7 +4,8 @@
 .hero-intro {
     background-size: auto 600px;
     background-position: -160px 50%;
-    height: 100vh;
+    height: 720px;
+    max-height: 100vh;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -58,6 +59,7 @@
         animation: arrow 1s ease-in-out infinite;
     }
     @include tablet {
+        height: 100vh;
         &_img {
             width: auto;
             height: 100%;

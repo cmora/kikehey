@@ -53,7 +53,7 @@ class Contact extends React.Component {
     this.setState({ sending: true });
     axios({
       method: "POST", 
-      url:"http://localhost:3000/contact", 
+      url: "/contact", 
       data: {
         name,   
         email,  

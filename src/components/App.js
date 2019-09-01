@@ -24,13 +24,13 @@ App.propTypes = {
   children: PropTypes.object.isRequired,
   loaded: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
-  pageLoading: PropTypes.func
+  pageLoading: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
   return {
     loading: state.page.loading,
-    loaded: state.page.loaded
+    loaded: state.page.loaded,
   };  
 };
 

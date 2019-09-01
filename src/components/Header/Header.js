@@ -9,35 +9,65 @@ class Header extends React.Component {
     super(props);
     this.handleOpen = this.handleOpen.bind(this);
     this.handleNavigation = this.handleNavigation.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
 
     this.state = {
-      open: false
+      open: false,
+      prevScrollpos: window.pageYOffset,
+      visible: true,
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  shouldComponentUpdate(nextState, nextProps) {
+    return (
+      nextProps.visible !== this.state.visible ||
+      nextState.open !== this.state.open
+    );
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll() {
+    const { prevScrollpos } = this.state;
+    const currentScrollPos = window.pageYOffset;
+    const visible = prevScrollpos > currentScrollPos;
+
+    this.setState({
+      prevScrollpos: currentScrollPos,
+      visible,
+    });
   }
 
   handleOpen() {
     this.setState({
-      open: !this.state.open
+      open: !this.state.open,
     });
   }
+  
 
   handleNavigation(toTop) {
     setTimeout(() => {
       this.setState({
-        open: !this.state.open
+        open: !this.state.open,
       });
       if (toTop) {
         window.scrollTo({
           top: 0,
           left: 0,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
       }
     }, 300);
   }
 
   render () {
-    const { open } = this.state;
+    const { open, visible } = this.state;
     const { social, projects } = this.props;
      
     return (
@@ -46,7 +76,8 @@ class Header extends React.Component {
         className={classnames(
           'header',
           {
-            ['open']: open
+            ['open']: open,
+            "hidden": !visible,
           }
         )}
       >
@@ -69,13 +100,13 @@ class Header extends React.Component {
 
 Header.propTypes = {
   projects: PropTypes.array.isRequired,
-  social: PropTypes.array.isRequired
+  social: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     projects: state.projects,
-    social: state.social
+    social: state.social,
   };  
 };
 

@@ -1,18 +1,26 @@
 @import "../../assets/styles/variables/global";
+@import "../../assets/styles/mixins/utils";
 
 #header {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: $black;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    padding: 19px 15px;
-    z-index: 1000;
-    &.open {
-        z-index: 999999;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: $black;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  padding: 19px 15px;
+  z-index: 1000;
+  transition: all 0.2s;
+  &.open {
+    z-index: 999999;
+  }
+  &.hidden {
+    transform: translate3d(0, -80px, 0);
+    @include desktop {
+      transform: translate3d(0, 0, 0);  
     }
+  }
 }
 
 .open-menu {

@@ -14,7 +14,7 @@ const compiler = webpack(config);
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
-  publicPath: config.output.publicPath
+  publicPath: config.output.publicPath,
 }));
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,7 +33,7 @@ app.post('/contact', (req, res) => {
     email = '',
     name = '', 
     message = '', 
-    subject = ''
+    subject = '',
   } = req.body;
 
   mailer({ email, name, message, subject }).then(() => {
@@ -43,14 +43,14 @@ app.post('/contact', (req, res) => {
       msg: 'success',
       user: {
         name,
-        email
-      }
+        email,
+      },
     }));
   }).catch((error) => {
     console.log(`Failed to send the message "${message}" from <${name}> ${email} with the error ${error && error.message}`);
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({
-      msg: 'error'
+      msg: 'error',
     }));
   });
 });

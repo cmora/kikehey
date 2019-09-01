@@ -2,6 +2,7 @@
 @import "../../../assets/styles/mixins/utils";
 
 .project-item {
+	cursor: pointer;
     &_content {
         display: block;
         overflow: hidden;

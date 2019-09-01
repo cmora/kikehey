@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
-import { get } from 'lodash';
-import { loadProject } from '../../../actions/projectActions';
+import { get, has } from 'lodash';
+import { loadProject, cleanProject } from '../../../actions/projectActions';
 import { pageLoading } from '../../../actions/pageActions';
 
 import './ProjectPage.scss';
@@ -25,8 +25,13 @@ class ProjectPage extends React.Component {
       headHeight: 0
     };
 
-    const { projectId } = this.props.location.state;
-    this.props.loadProject(projectId);
+    const { location, loadProject, history } = this.props;
+    const projectId = get(location, 'state.projectId');
+    if (projectId) {
+      loadProject(projectId);
+    } else {
+      history.push({ pathname: '/404' });
+    }
   }
 
   componentDidMount() {
@@ -38,13 +43,11 @@ class ProjectPage extends React.Component {
         this.setState({ headHeight });
       }
     }
-    setTimeout(() => {
-      this.props.pageLoading(false);
-    }, 1500);
   }
 
   componentWillUnmount() {
     this.props.pageLoading(true);
+    this.props.cleanProject();
     if (isMobile) {
       window.removeEventListener('scroll', this.handleScroll); 
     }
@@ -81,6 +84,10 @@ class ProjectPage extends React.Component {
   
   render () {
     const { project } = this.props;
+    if (project && has(project, 'title') ) {
+      this.props.pageLoading(false);
+    }
+
     const { headerPosition, opacity, sticky, headHeight, arrowPosition } = this.state;
     const title = get(project, 'title', null);
     const body = get(project, 'body', null);
@@ -88,14 +95,14 @@ class ProjectPage extends React.Component {
     const company = get(project, 'company', null);
     const url = get(project, 'url', null);
     
-
     const htmlOptions = {
       renderNode: {
         [BLOCKS.EMBEDDED_ASSET]: (node) => {
           const asset = get(node, 'data.target.fields.file.url');
           if (!asset) return null;
           return `<img src="${asset}" />`;
-        }
+        },
+        [BLOCKS.PARAGRAPH]: (node, next) => `<p>${next(node.content).replace('\n', '<br/>')}</p>`,
       }
     };
 
@@ -109,7 +116,9 @@ class ProjectPage extends React.Component {
         <header className="project-page_header">
           <div
             className="project-page_header__image"
-            style={{backgroundImage: `url(${image})`}}
+            style={{
+              backgroundImage: !isMobile ? `url(${image})` : null,
+            }}
           >
             <img
               src={image}
@@ -141,9 +150,11 @@ class ProjectPage extends React.Component {
                     <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body, htmlOptions)}} />
                   }
                 </div>
-                <div className="project-page_body_link">
-                  <a href={url} target="_blank">See the online project here!</a>
-                </div>
+                {url &&
+                  <div className="project-page_body_link">
+                    <a href={url} target="_blank">See the online project here!</a>
+                  </div>
+                }
               </div>
             </div>
           </div>
@@ -168,7 +179,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadProject: bindActionCreators(loadProject, dispatch),
-    pageLoading: bindActionCreators(pageLoading, dispatch)
+    pageLoading: bindActionCreators(pageLoading, dispatch),
+    cleanProject: bindActionCreators(cleanProject, dispatch),
   };
 };
 

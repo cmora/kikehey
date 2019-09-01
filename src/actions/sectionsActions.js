@@ -1,18 +1,18 @@
 import * as types from './actionTypes';
 import * as Api from '../api';
-import { formatSection } from '../formaters';
+import { formatSections } from '../formaters';
 
-export function loadAboutSectionsSuccess(section) {
+export function loadSectionsSuccess(sections) {
   return {
-    type: types.LOAD_ABOUT_SECTION_SUCCESS,
-    section
+    type: types.LOAD_SECTIONS_SUCCESS,
+    sections,
   };
 }
 
-export function loadAboutSection () {
+export function loadSections () {
   return function(dispatch) {
-    return Api.getAboutSection().then((section)=>{
-      dispatch(loadAboutSectionsSuccess(formatSection(section)));
+    return Api.getSections().then((sections)=>{
+      dispatch(loadSectionsSuccess(formatSections(sections)));
     }).catch(error => {
       throw(error);
     });

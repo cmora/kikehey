@@ -21,6 +21,7 @@
     "mocha": true
   },
   "rules": {
+    "comma-dangle": ["error", "always-multiline"],
     "quotes": 0,
     "no-console": 1,
     "no-debugger": 1,

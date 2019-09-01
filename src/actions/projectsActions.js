@@ -5,7 +5,7 @@ import { formatProjects } from '../formaters';
 export function loadProjectsSuccess(projects) {
   return {
     type: types.LOAD_PROJECTS_SUCCESS,
-    projects
+    projects,
   };
 }
 

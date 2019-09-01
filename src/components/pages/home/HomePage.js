@@ -16,10 +16,11 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     const hash = this.getHashFromUrl();
+    const { pageLoading } = this.props;
     if (hash) {
       this.navigateToBlock(hash);
     }
-    this.props.pageLoading(false);
+    pageLoading(false);
   }
 
   componentDidUpdate() {
@@ -37,7 +38,7 @@ class HomePage extends React.Component {
         window.scrollTo({
           top: top - 30,
           left: 0,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
       }
     }
@@ -53,20 +54,21 @@ class HomePage extends React.Component {
     setTimeout(() => {
       this.props.history.push({
         pathname: `/projects/${item.slug}`,
-        state: { projectId: item.id }
+        state: { projectId: item.id },
       });
     }, 1000);
   }
 
   render () {
-    const { experience, sections, projects } = this.props;
+    const { experience, about, projects } = this.props;
     const projectKeys = Object.keys(projects);
+    const aboutImage = get(about, 'image');
     return (
       <div id="main">
-        <Hero />
+        <Hero image={aboutImage} />
         <div id="container">
           <div ref={(element) => this.about = element}>
-            <About {...sections[0]} experience={experience} />
+            <About {...about} experience={experience} />
           </div>
           {projectKeys && projectKeys.length > 0 &&
             projectKeys.map((key) => {
@@ -87,23 +89,27 @@ class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
-  sections: PropTypes.array,
+  about: PropTypes.object,
   location: PropTypes.object,
   experience: PropTypes.array,
-  projects: PropTypes.array
+  projects: PropTypes.array,
+  pageLoading: PropTypes.func,
+  history: PropTypes.shape({
+    push: PropTypes.object,
+  }),
 };
 
 const mapStateToProps = (state) => {
   return {
-    sections: state.sections,
+    about: state.sections['1xZa2s7iXOoOa0s2wQWUOi'],
     experience: state.experience,
-    projects: state.projects
+    projects: state.projects,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    pageLoading: bindActionCreators(pageLoading, dispatch)
+    pageLoading: bindActionCreators(pageLoading, dispatch),
   };
 };
 

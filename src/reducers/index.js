@@ -12,7 +12,7 @@ const rootReducer = combineReducers ({
     projects,
     project,
     social,
-    page
+    page,
 });
 
 export default rootReducer;

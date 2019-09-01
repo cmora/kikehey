@@ -4,14 +4,14 @@ import classnames from 'classnames';
 import './Loader.scss';
 
 const Loader = ({
-  loading
+  loading,
 }) => {
   return (
     <div
       className={classnames(
         'loader',
         {
-          ['loading']: loading
+          ['loading']: loading,
         }
       )}
     >
@@ -22,7 +22,7 @@ const Loader = ({
 };
 
 Loader.propTypes = {
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
 };
 
 

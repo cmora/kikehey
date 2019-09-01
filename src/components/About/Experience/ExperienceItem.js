@@ -3,7 +3,7 @@ import './ExperienceItem.scss';
 
 
 const ExperienceItem = ({
-  item
+  item,
 }) => {
   if (!item) return null;
 
@@ -31,7 +31,7 @@ const ExperienceItem = ({
 };
 
 ExperienceItem.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 export default ExperienceItem;

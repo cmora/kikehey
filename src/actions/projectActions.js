@@ -5,7 +5,7 @@ import { formatProject } from '../formaters';
 export function loadProjectSuccess(project) {
   return {
     type: types.LOAD_PROJECT_PAGE_SUCCESS,
-    project
+    project,
   };
 }
 
@@ -16,5 +16,11 @@ export function loadProject (id) {
     }).catch(error => {
       throw(error);
     });
+  };
+}
+
+export function cleanProject() {
+  return {
+    type: types.CLEAN_PROJECT,
   };
 }

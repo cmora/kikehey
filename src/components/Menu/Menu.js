@@ -13,7 +13,7 @@ const Menu = ({
   handleOpen,
   handleNavigation,
   projects,
-  socialNetworks
+  socialNetworks,
 }) => {
   if (!projects || !projects.length) return null;
 
@@ -23,12 +23,12 @@ const Menu = ({
         className={classnames(
           'main-menu_top',
           {
-            ['animated fadeInDown']: open
+            ['animated fadeInDown']: open,
           }
         )}
       >
         <div className="main-menu_top__logo">
-          <Link to="/" onClick={() => {  handleNavigation(true) }}>
+          <Link to="/" onClick={() => handleNavigation(true)}>
             <img src={logo} />
           </Link>
         </div>
@@ -39,7 +39,7 @@ const Menu = ({
           className={classnames(
             'main-menu__nav',
             {
-              ['animated fadeInUp']: open
+              ['animated fadeInUp']: open,
             }
           )}
         >
@@ -47,9 +47,9 @@ const Menu = ({
             <Link
               to={{
                 pathname: "/",
-                hash: '#about'
+                hash: '#about',
               }}
-              onClick={() => {  handleNavigation(false) }}
+              onClick={() => handleNavigation(false)}
             >
               <span>About</span>
             </Link>
@@ -62,9 +62,9 @@ const Menu = ({
                 <Link
                   to={{
                     pathname: "/",
-                    hash: `#${categoryId}`
+                    hash: `#${categoryId}`,
                   }}
-                  onClick={() => {  handleNavigation(false) }}
+                  onClick={() => handleNavigation(false)}
                 >
                   <span>{category}</span>
                 </Link>
@@ -76,7 +76,7 @@ const Menu = ({
       <div
         className={classnames(
           {
-            ['animated fadeInUp']: open
+            ['animated fadeInUp']: open,
           }
         )}
       >
@@ -91,7 +91,7 @@ Menu.propTypes = {
   open: PropTypes.bool,
   handleOpen: PropTypes.func,
   handleNavigation: PropTypes.func,
-  socialNetworks: PropTypes.array
+  socialNetworks: PropTypes.array,
 };
 
 export default Menu;

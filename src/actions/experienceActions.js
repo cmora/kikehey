@@ -5,7 +5,7 @@ import { formatExperience } from '../formaters';
 export function loadExperienceSuccess(experience) {
   return {
     type: types.LOAD_EXPERIENCE_SUCCESS,
-    experience
+    experience,
   };
 }
 

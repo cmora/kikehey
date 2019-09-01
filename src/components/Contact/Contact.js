@@ -3,6 +3,8 @@ import classnames from 'classnames';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { BLOCKS } from '@contentful/rich-text-types';
 import { pageLoading } from '../../actions/pageActions';
 
 import Social from '../utils/Social/Social';
@@ -21,7 +23,7 @@ class Contact extends React.Component {
       open: false,
       showMessage: false,
       user: null,
-      sending: false
+      sending: false,
     };
   }
 
@@ -33,7 +35,7 @@ class Contact extends React.Component {
     }
     setTimeout(() => {
       this.setState({
-        open: !this.state.open
+        open: !this.state.open,
       });
     }, 1000);
     setTimeout(() => {
@@ -55,15 +57,15 @@ class Contact extends React.Component {
         name,   
         email,  
         subject,
-        message
-      }
+        message,
+      },
     }).then((response)=>{
       if (response.data.msg === 'success'){
         const { user } = response.data;
         this.setState({
           showMessage: true,
-          user
-        })
+          user,
+        });
         this.setState({ sending: false });
       } else if(response.data.msg === 'error'){
         alert("Message failed to send.");
@@ -77,7 +79,7 @@ class Contact extends React.Component {
         className={classnames(
           'contact-block_form',
           {
-            ['animated fadeInDown'] : open 
+            ['animated fadeInDown'] : open,
           }
         )}
         onSubmit={this.handleSubmit}
@@ -120,14 +122,20 @@ class Contact extends React.Component {
 
   render () {
     const { open, showMessage, sending } = this.state;
-    const { social } = this.props;
+    const { social, contact } = this.props;
+
+    const htmlOptions = {
+      renderNode: {
+        [BLOCKS.PARAGRAPH]: (node, next) => `<p>${next(node.content).replace('\n', '<br/>')}</p>`,
+      },
+    };
 
     return (
       <div
         className={classnames(
           'contact-block',
           {
-            ['open']: open
+            ['open']: open,
           }
         )}
       >
@@ -143,7 +151,7 @@ class Contact extends React.Component {
                   className={classnames(
                     'contact-block_tite',
                     {
-                      ['animated fadeInUp'] : open 
+                      ['animated fadeInUp'] : open, 
                     }
                   )}
                 >
@@ -153,14 +161,13 @@ class Contact extends React.Component {
                   className={classnames(
                     'contact-block_info',
                     {
-                      ['animated fadeInUp'] : open 
+                      ['animated fadeInUp'] : open,
                     }
                   )}
                 >
-                  <p>Calle 144 # 13-42 apto 705 <br />
-                  Bogotá, Colombia <br />
-                  Cel.: + 57 3212055953 <br />
-                  wallace1610@gmail.com</p>
+                  {contact && contact.body &&
+                    <div dangerouslySetInnerHTML={{__html: documentToHtmlString(contact.body, htmlOptions)}} />
+                  }
                 </div>
                 <Social items={social} />
                 {(showMessage && !sending) && 
@@ -189,18 +196,20 @@ class Contact extends React.Component {
  
 Contact.propTypes = {
   social: PropTypes.array.isRequired,
-  pageLoading: PropTypes.bool
+  pageLoading: PropTypes.func,
+  contact: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
   return {
-    social: state.social
+    social: state.social,
+    contact: state.sections['1hRCdLWma9E8R6bEl8w8yo'],
   };  
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    pageLoading: bindActionCreators(pageLoading, dispatch)
+    pageLoading: bindActionCreators(pageLoading, dispatch),
   };
 };
 

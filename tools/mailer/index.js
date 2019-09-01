@@ -16,8 +16,8 @@ const options = {
     clientId,
     clientSecret,
     refreshToken,
-    accessToken
-  }
+    accessToken,
+  },
 };
 
 const transporter = nodemailer.createTransport(options);
@@ -30,7 +30,7 @@ const send = ({ email, name, subject, message }) => {
     subject: `New message from ${from} at Kikehey.com`,
     text: message,
     html: `<b>Subject:</b> ${subject} <br /><br /> <b>Message:</b><p>${message}</p>`,
-    replyTo: from
+    replyTo: from,
   };
 
   return new Promise((resolve, reject) => {

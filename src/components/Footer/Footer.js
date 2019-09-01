@@ -1,17 +1,21 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Social from '../utils/Social/Social';
 
 import './Footer.scss';
 
 const Footer = ({
-  social
+  social,
+  footer,
 }) => {
   return (
     <footer className="footer">
       <div className="row">
         <div className="column">
-          <p>If you want to work with me, just shoot me an email <a href="mailto:me.@kikehey.com">me.@kikehey.com</a> or find me here:</p>
+          {footer && footer.body &&
+            <div dangerouslySetInnerHTML={{__html: documentToHtmlString(footer.body)}} />
+          }
           <Social items={social} />
         </div>
       </div>
@@ -20,12 +24,14 @@ const Footer = ({
 };
 
 Footer.propTypes = {
-  social: PropTypes.array.isRequired
+  social: PropTypes.array.isRequired,
+  footer: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
   return {
-    social: state.social
+    social: state.social,
+    footer: state.sections['4mqxb8OMOopPLVyU1F1Ojq'],
   };  
 };
 

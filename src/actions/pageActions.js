@@ -3,13 +3,13 @@ import * as types from './actionTypes';
 export function pageLoading(loading) {
   return {
     type: types.PAGE_LOADING,
-    loading
+    loading,
   };
 }
 
 export function pageLoaded(loaded) {
-    return {
-      type: types.PAGE_LOADED,
-      loaded
-    };
-  }
+  return {
+    type: types.PAGE_LOADED,
+    loaded,
+  };
+}

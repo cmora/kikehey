@@ -9,7 +9,7 @@ const About = ({
   title,
   body,
   resume,
-  experience
+  experience,
 }) => (
   <div className="about-block content-block">
     <div className="row">
@@ -17,18 +17,20 @@ const About = ({
         <h2 className="about-block_title content-block__title animated fadeInUp">
           {title}
         </h2>
-        <div className="content-block__description">
+        <div className="content-block__description animated fadeInUp">
         {body &&
           <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}} />
         }
         </div>
         <Experience items={experience} />
-        <div className="about-block_resume">
-          <a href={resume}>
-            DOWNLOAD MY FULL RESUME
-            <img src={downloadIcon} />
-          </a>
-        </div>
+        {resume &&
+          <div className="about-block_resume">
+            <a href={resume} target="_blank">
+              DOWNLOAD MY FULL RESUME
+              <img src={downloadIcon} />
+            </a>
+          </div>
+        }
       </div>
     </div>
   </div>
@@ -38,7 +40,7 @@ About.propTypes = {
   title: PropTypes.string,
   resume: PropTypes.string,
   experience: PropTypes.array,
-  body:  PropTypes.object
+  body: PropTypes.object,
 };
 
 export default About;

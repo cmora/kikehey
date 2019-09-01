@@ -178,7 +178,12 @@
         
         h6 {
             font-size: rem(14);
-        }
+		}
+		
+		img {
+			margin-bottom: 1rem;
+		}
+
         &_link {
             text-align: center;
             &::before {

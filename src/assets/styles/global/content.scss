@@ -117,7 +117,7 @@ h6 {
 
 // CONTENT BLOCKS
 .content-block {
-  margin: 4rem 0;
+  margin: 2rem 0;
   &__title {
     max-width: 50%;
     &::after {
@@ -171,7 +171,7 @@ h6 {
     }
   }
   @include desktop {
-    margin: 210px 0;
+    margin: 100px 0;
     &__title {
       margin-bottom: 46px;
       &::after {

@@ -6,7 +6,7 @@ import './Experience.scss';
 
 
 const Experience = ({
-  items
+  items,
 }) => {
   if (!items || !items.length) return null;
 
@@ -22,10 +22,10 @@ const Experience = ({
         settings: {
           variableWidth: true,
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -46,7 +46,7 @@ const Experience = ({
 };
 
 Experience.propTypes = {
-  items: PropTypes.array
+  items: PropTypes.array,
 };
 
 export default Experience;

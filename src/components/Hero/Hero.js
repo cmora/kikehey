@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { isMobile } from 'react-device-detect';
 
 const logo = require('../../assets/images/logo.svg');
@@ -12,10 +12,9 @@ class Hero extends React.Component {
     
     this.state = {
       backgroundPosition: 'translate3d(0, 0, 0)',
-      logoPosition: 'translate3d(0, 0, 0)'
+      logoPosition: 'translate3d(0, 0, 0)',
     };
   }
-
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
@@ -31,18 +30,20 @@ class Hero extends React.Component {
     const scrollTop = window.scrollY;
     if (isMobile) {
       this.setState({
-        logoPosition: `translate3d(0, ${Math.round((scrollTop) * velocityLogo)}px, 0)`
+        logoPosition: `translate3d(0, ${Math.round((scrollTop) * velocityLogo)}px, 0)`,
       });
     } else {
       this.setState({
         backgroundPosition: `translate3d(0, ${Math.round((scrollTop) * velocityBG)}px, 0)`,
-        logoPosition: `translate3d(0, ${Math.round((scrollTop) * velocityLogo)}px, 0)`
+        logoPosition: `translate3d(0, ${Math.round((scrollTop) * velocityLogo)}px, 0)`,
       });
     }
   }
 
   render() {
+    const { image } = this.props;
     const { backgroundPosition, logoPosition } = this.state;
+
     return (
       <div
         className="hero-intro"
@@ -51,7 +52,7 @@ class Hero extends React.Component {
         <div className="hero-intro_image">
           <img
             className="hero-intro_img"
-            src={bg}
+            src={image}
             style={{ transform: backgroundPosition }}
           />
           <img
@@ -67,6 +68,10 @@ class Hero extends React.Component {
     );
   }
 }
+
+Hero.propTypes = {
+  image: PropTypes.string,
+};
 
 export default Hero;
  

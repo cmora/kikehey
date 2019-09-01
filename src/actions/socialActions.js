@@ -5,7 +5,7 @@ import { formatSocial } from '../formaters';
 export function loadSocialSuccess(social) {
   return {
     type: types.LOAD_SOCIAL_SUCCESS,
-    social
+    social,
   };
 }
 

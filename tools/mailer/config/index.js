@@ -9,5 +9,5 @@ export default {
   clientId,
   clientSecret,
   refreshToken,
-  accessToken
+  accessToken,
 };

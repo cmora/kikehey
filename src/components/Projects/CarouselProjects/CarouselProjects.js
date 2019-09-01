@@ -9,7 +9,7 @@ import './CarouselProjects.scss';
 
 const CarouselProjects = ({
   items,
-  onHandleProject
+  onHandleProject,
 }) => {
   if (!items || !items.length) return null;
 
@@ -27,10 +27,10 @@ const CarouselProjects = ({
           variableWidth: true,
           slidesToShow: 1,
           slidesToScroll: 1,
-          verticalSwiping: false
-        }
-      }
-    ]
+          verticalSwiping: false,
+        },
+      },
+    ],
   };
 
   const isSlick = (!isMobile && items.length >= 4) || isMobile;
@@ -51,7 +51,7 @@ const CarouselProjects = ({
         ) : (
           <div className={classnames(
             {
-              ['noSlick']: !isSlick
+              ['noSlick']: !isSlick,
             }
           )}>
             {
@@ -69,7 +69,8 @@ const CarouselProjects = ({
 };
 
 CarouselProjects.propTypes = {
-  items: PropTypes.array
+  items: PropTypes.array,
+  onHandleProject: PropTypes.func,
 };
 
 export default CarouselProjects;

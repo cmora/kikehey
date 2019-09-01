@@ -6,7 +6,7 @@ import './GridProjects.scss';
 
 const GridProjects = ({
   items,
-  projectOnclik
+  projectOnclik,
 }) => {
   if (!items || !items.length) return null;
 
@@ -29,7 +29,7 @@ const GridProjects = ({
 
 GridProjects.propTypes = {
   items: PropTypes.array,
-  projectOnclik: PropTypes.func
+  projectOnclik: PropTypes.func,
 };
 
 export default GridProjects;

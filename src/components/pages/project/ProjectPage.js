@@ -22,7 +22,7 @@ class ProjectPage extends React.Component {
       arrowPosition: 'translate3d(0, 0, 0)',
       opacity: 0,
       sticky: false,
-      headHeight: 0
+      headHeight: 0,
     };
 
     const { location, loadProject, history } = this.props;
@@ -64,13 +64,13 @@ class ProjectPage extends React.Component {
         headerPosition: `translate3d(-50%, ${Math.round((scrollTop) * -velocityBG)}px, 0)`,
         arrowPosition: `translate3d(0, ${Math.round((scrollTop) * velocityArrow)}px, 0)`,
         sticky: false,
-        opacity: opacityOffset
+        opacity: opacityOffset,
       });
     } else {
       this.setState({
         headerPosition: `translate3d(-50%, ${this.state.headerPosition}px, 0)`,
         opacity: this.state.opacity,
-        sticky: true
+        sticky: true,
       });
     }
   }
@@ -103,14 +103,14 @@ class ProjectPage extends React.Component {
           return `<img src="${asset}" />`;
         },
         [BLOCKS.PARAGRAPH]: (node, next) => `<p>${next(node.content).replace('\n', '<br/>')}</p>`,
-      }
+      },
     };
 
     return (
       <div className={classnames(
         'project-page',
         {
-          ['sticky']: sticky
+          ['sticky']: sticky,
         }
       )}>
         <header className="project-page_header">
@@ -167,12 +167,17 @@ class ProjectPage extends React.Component {
 ProjectPage.propTypes = {
   project: PropTypes.object.isRequired,
   location: PropTypes.object,
-  loadProject: PropTypes.func
+  loadProject: PropTypes.func,
+  pageLoading: PropTypes.func,
+  cleanProject: PropTypes.func,
+  history: PropTypes.shape({
+    push: PropTypes.object,
+  }),
 };
 
 const mapStateToProps = (state) => {
   return {
-    project: state.project
+    project: state.project,
   };
 };
 

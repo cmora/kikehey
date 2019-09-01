@@ -12,7 +12,7 @@ class Projects extends React.Component {
     super(props);
     this.changeFlavor = this.changeFlavor.bind(this);
     this.state = {
-      flavor: 'carousel'
+      flavor: 'carousel',
     };
   }
 
@@ -28,7 +28,12 @@ class Projects extends React.Component {
 
   render () {
     const { flavor } = this.state;
-    const { description, title, projects, onHandleProject } = this.props;
+    const {
+      description, 
+      title, 
+      projects, 
+      onHandleProject,
+    } = this.props;
 
     return (
       <div className="projects-block content-block">
@@ -64,7 +69,8 @@ class Projects extends React.Component {
 Projects.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  projects: PropTypes.array
+  projects: PropTypes.array,
+  onHandleProject: PropTypes.func,
 };
 
 export default Projects;

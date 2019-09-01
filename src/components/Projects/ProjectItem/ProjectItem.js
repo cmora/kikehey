@@ -5,7 +5,7 @@ import './ProjectItem.scss';
 const ProjectItem = ({
   item,
   flavor,
-  onHandleProject
+  onHandleProject,
 }) => {
   if (!item) return null;
   
@@ -13,9 +13,7 @@ const ProjectItem = ({
     <div className={`project-item ${flavor}`}>
       <div
         className="project-item_content"
-        onClick={() => {
-          onHandleProject(item)
-        }}
+        onClick={() => onHandleProject(item)}
       >
         <div className="project-item_image">
           <img src={item.thumbnail} />
@@ -39,11 +37,12 @@ const ProjectItem = ({
 
 ProjectItem.propTypes = {
   item: PropTypes.object,
-  flavor: PropTypes.string
+  flavor: PropTypes.string,
+  onHandleProject: PropTypes.func,
 };
 
 ProjectItem.defaultProps = {
-  flavor: "carousel"
+  flavor: "carousel",
 };
 
 export default ProjectItem;

@@ -4,7 +4,7 @@ import './Social.scss';
 
 
 const Social = ({
-  items
+  items,
 }) => {
   if (!items || !items.length) return null;
 
@@ -25,7 +25,7 @@ const Social = ({
 };
 
 Social.propTypes = {
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
 };
 
 export default Social;

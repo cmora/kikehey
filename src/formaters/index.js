@@ -15,7 +15,7 @@ export const formatMenu = (data) => {
     menu.push({
       name: get(item, 'fields.menuName'),
       slug: get(item, 'fields.slug'),
-      order: get(item, 'fields.order')
+      order: get(item, 'fields.order'),
     });
   });
   return orderBy(menu, ['order']);
@@ -27,7 +27,7 @@ export const formatSingleSection = (data) => {
     description: get(data, 'fields.description', null),
     body: get(data, 'fields.body', null),
     resume: get(data, 'fields.resume.fields.file.url', null),
-    image: get(data, 'fields.image.fields.file.url', null)
+    image: get(data, 'fields.image.fields.file.url', null),
   };
 };
 
@@ -50,7 +50,7 @@ export const formatExperience = (data) => {
       description: get(item, 'fields.description'),
       role: get(item, 'fields.role'),
       startDate: formatExperienceDate(get(item, 'fields.startDate')),
-      endDate: formatExperienceDate(get(item, 'fields.endDate'))
+      endDate: formatExperienceDate(get(item, 'fields.endDate')),
     });
   });
   return experience;
@@ -76,7 +76,7 @@ export const formatProject = (data) => {
     category: {
       name: get(data, 'fields.category.fields.name'),
       order: get(data, 'fields.category.fields.order'),
-      description: get(data, 'fields.category.fields.description')
+      description: get(data, 'fields.category.fields.description'),
     },
     slug: slugify(get(data, 'fields.title')),
     id: get(data, 'sys.id'),

@@ -72,7 +72,8 @@
             height: 55px;
             border-radius: 50%;
             padding: 19px 15px;
-            z-index: 1000;
+			z-index: 1000;
+			cursor: pointer;
             &::before {
                 content: "";
                 width: 26px;

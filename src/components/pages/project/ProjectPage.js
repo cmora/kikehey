@@ -47,7 +47,7 @@ class ProjectPage extends React.Component {
   }
 
   componentWillUnmount() {
-    const { pageLoading, cleanProject } = this.props;
+    const { pageLoading, cleanProject, toogleHeader } = this.props;
     toogleHeader(false);
     pageLoading(true);
     cleanProject();

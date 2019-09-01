@@ -22,11 +22,11 @@ class Header extends React.Component {
     window.addEventListener('scroll', this.handleScroll);
   }
 
-  shouldComponentUpdate(nextState, nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     const { visible, open } = this.state;
     const { headerHidden } = this.props;
     return (
-      nextProps.visible !== visible ||
+      nextState.visible !== visible ||
       nextState.open !== open ||
       nextProps.headerHidden !== headerHidden
     );

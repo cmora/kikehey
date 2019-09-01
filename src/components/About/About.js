@@ -19,6 +19,7 @@ const About = ({
         </h2>
         <div className="content-block__description animated fadeInUp">
         {body &&
+          /* eslint-disable react/no-danger */
           <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}} />
         }
         </div>

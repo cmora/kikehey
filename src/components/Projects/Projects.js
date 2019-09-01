@@ -16,12 +16,6 @@ class Projects extends React.Component {
     };
   }
 
-  componentDidMount() {
-    if (!isMobile) {
-      this.setState({ flavor: 'carousel' });
-    }
-  }
-
   changeFlavor (flavor) {
     this.setState({ flavor });
   }

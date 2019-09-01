@@ -14,6 +14,7 @@ const Footer = ({
       <div className="row">
         <div className="column">
           {footer && footer.body &&
+            /* eslint-disable react/no-danger */
             <div dangerouslySetInnerHTML={{__html: documentToHtmlString(footer.body)}} />
           }
           <Social items={social} />

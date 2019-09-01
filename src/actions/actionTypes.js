@@ -6,4 +6,5 @@ export const LOAD_SOCIAL_SUCCESS  = 'LOAD_SOCIAL_SUCCESS';
 export const CLEAN_PROJECT  = 'CLEAN_PROJECT';
 export const PAGE_LOADING  = 'PAGE_LOADING';
 export const PAGE_LOADED  = 'PAGE_LOADED';
+export const TOOGLE_HEADER = 'TOOGLE_HEADER';
  

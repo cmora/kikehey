@@ -3,6 +3,7 @@ import * as types from '../actions/actionTypes';
 const initialState = {
   loading: false,
   loaded: true,
+  headerHidden: false,
 };
 
 export default function page(state = initialState, action) {
@@ -16,6 +17,10 @@ export default function page(state = initialState, action) {
       return Object.assign({}, state, {
         loaded: action.loaded,
         loading: false,
+      });
+    case types.TOOGLE_HEADER:
+      return Object.assign({}, state, {
+        headerHidden: action.hidden,
       });
     default:
       return state;

@@ -7,13 +7,13 @@ import Loader from './Loader/Loader';
 
 class App extends React.Component {
   render () {
-    const { loaded, loading } = this.props;
+    const { loaded, loading, children } = this.props;
     return (
       <div id="wrapper">
         <Header />
         <Loader loading={loading} loaded={loaded} />
         <Contact />
-        {this.props.children}
+        {children}
         <Footer />
       </div>
     );

@@ -23,9 +23,12 @@ class Header extends React.Component {
   }
 
   shouldComponentUpdate(nextState, nextProps) {
+    const { visible, open } = this.state;
+    const { headerHidden } = this.props;
     return (
-      nextProps.visible !== this.state.visible ||
-      nextState.open !== this.state.open
+      nextProps.visible !== visible ||
+      nextState.open !== open ||
+      nextProps.headerHidden !== headerHidden
     );
   }
 
@@ -45,16 +48,18 @@ class Header extends React.Component {
   }
 
   handleOpen() {
+    const { open } = this.state;
     this.setState({
-      open: !this.state.open,
+      open: !open,
     });
   }
   
 
   handleNavigation(toTop) {
     setTimeout(() => {
+      const { open } = this.state;
       this.setState({
-        open: !this.state.open,
+        open: !open,
       });
       if (toTop) {
         window.scrollTo({
@@ -68,7 +73,9 @@ class Header extends React.Component {
 
   render () {
     const { open, visible } = this.state;
-    const { social, projects } = this.props;
+    const { social, projects, headerHidden } = this.props;
+
+    if (headerHidden) return null;
      
     return (
       <header
@@ -77,7 +84,7 @@ class Header extends React.Component {
           'header',
           {
             ['open']: open,
-            "hidden": !visible,
+            "hidden": !visible && !open,
           }
         )}
       >
@@ -101,12 +108,14 @@ class Header extends React.Component {
 Header.propTypes = {
   projects: PropTypes.array.isRequired,
   social: PropTypes.array.isRequired,
+  headerHidden: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => {
   return {
     projects: state.projects,
     social: state.social,
+    headerHidden: state.page.headerHidden,
   };  
 };
 

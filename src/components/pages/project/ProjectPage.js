@@ -7,7 +7,7 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
 import { get, has } from 'lodash';
 import { loadProject, cleanProject } from '../../../actions/projectActions';
-import { pageLoading } from '../../../actions/pageActions';
+import { pageLoading, toogleHeader } from '../../../actions/pageActions';
 
 import './ProjectPage.scss';
 
@@ -16,7 +16,7 @@ class ProjectPage extends React.Component {
     super(props); 
     this.handleScroll = this.handleScroll.bind(this);
     this.handleBack = this.handleBack.bind(this);
-    
+
     this.state = {
       headerPosition: 'translate3d(-50%, 0, 0)',
       arrowPosition: 'translate3d(0, 0, 0)',
@@ -35,25 +35,34 @@ class ProjectPage extends React.Component {
   }
 
   componentDidMount() {
+    const { toogleHeader } = this.props;
+    toogleHeader(true);
     window.scrollTo(0, 0);
     if (isMobile) {
       window.addEventListener('scroll', this.handleScroll);
       if (this.projectHead) {
-        const headHeight = this.projectHead.clientHeight;
-        this.setState({ headHeight });
+        this.detectHeaderheight();
       }
     }
   }
 
   componentWillUnmount() {
-    this.props.pageLoading(true);
-    this.props.cleanProject();
+    const { pageLoading, cleanProject } = this.props;
+    toogleHeader(false);
+    pageLoading(true);
+    cleanProject();
     if (isMobile) {
       window.removeEventListener('scroll', this.handleScroll); 
     }
   }
 
+  detectHeaderheight() {
+    const { clientHeight } = this.projectHead;
+    this.setState({ headHeight: clientHeight });
+  }
+
   handleScroll() {
+    const { headerPosition, opacity } = this.state;
     const velocityBG = 0.2;
     const velocityArrow = 0.4;
     const scrollTop = window.scrollY;
@@ -68,27 +77,34 @@ class ProjectPage extends React.Component {
       });
     } else {
       this.setState({
-        headerPosition: `translate3d(-50%, ${this.state.headerPosition}px, 0)`,
-        opacity: this.state.opacity,
+        headerPosition: `translate3d(-50%, ${headerPosition}px, 0)`,
+        opacity,
         sticky: true,
       });
     }
   }
 
   handleBack() {
-    this.props.pageLoading(true);
+    const { pageLoading, history } = this.props;
+    pageLoading(true);
     setTimeout(() => {
-      this.props.history.push({ pathname: `/` });
+      history.push({ pathname: `/` });
     }, 1000);
   }
   
   render () {
-    const { project } = this.props;
+    const { project, pageLoading } = this.props;
     if (project && has(project, 'title') ) {
-      this.props.pageLoading(false);
+      pageLoading(false);
     }
 
-    const { headerPosition, opacity, sticky, headHeight, arrowPosition } = this.state;
+    const {
+      headerPosition,
+      opacity, 
+      sticky, 
+      headHeight, 
+      arrowPosition,
+    } = this.state;
     const title = get(project, 'title', null);
     const body = get(project, 'body', null);
     const image = get(project, 'image', null);
@@ -147,6 +163,7 @@ class ProjectPage extends React.Component {
                 <div className="project-page_body__content">
                   <div className="project-page_body__company">{company}</div>
                   {body &&
+                    /* eslint-disable react/no-danger */
                     <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body, htmlOptions)}} />
                   }
                 </div>
@@ -170,8 +187,9 @@ ProjectPage.propTypes = {
   loadProject: PropTypes.func,
   pageLoading: PropTypes.func,
   cleanProject: PropTypes.func,
+  toogleHeader: PropTypes.func,
   history: PropTypes.shape({
-    push: PropTypes.object,
+    push: PropTypes.func,
   }),
 };
 
@@ -186,6 +204,7 @@ const mapDispatchToProps = (dispatch) => {
     loadProject: bindActionCreators(loadProject, dispatch),
     pageLoading: bindActionCreators(pageLoading, dispatch),
     cleanProject: bindActionCreators(cleanProject, dispatch),
+    toogleHeader: bindActionCreators(toogleHeader, dispatch),
   };
 };
 

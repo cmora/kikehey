@@ -13,3 +13,11 @@ export function pageLoaded(loaded) {
     loaded,
   };
 }
+
+export function toogleHeader(hidden) {
+  console.log(hidden);
+  return {
+    type: types.TOOGLE_HEADER,
+    hidden,
+  };
+}

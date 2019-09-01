@@ -28,18 +28,19 @@ class Contact extends React.Component {
   }
 
   handleOpen() {
-    this.props.pageLoading(true);
+    const { pageLoading } = this.props;
     const { open } = this.state;
+    pageLoading(true);
     if (!open) {
       this.setState({ showMessage: false });
     }
     setTimeout(() => {
       this.setState({
-        open: !this.state.open,
+        open: !open,
       });
     }, 1000);
     setTimeout(() => {
-      this.props.pageLoading(false);
+      pageLoading(false);
     }, 1400);
   }
 
@@ -166,6 +167,7 @@ class Contact extends React.Component {
                   )}
                 >
                   {contact && contact.body &&
+                    /* eslint-disable react/no-danger */
                     <div dangerouslySetInnerHTML={{__html: documentToHtmlString(contact.body, htmlOptions)}} />
                   }
                 </div>

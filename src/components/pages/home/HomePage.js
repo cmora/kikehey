@@ -50,9 +50,10 @@ class HomePage extends React.Component {
   }
 
   onHandleProject(item) {
-    this.props.pageLoading(true);
+    const { pageLoading, history } = this.props;
+    pageLoading(true);
     setTimeout(() => {
-      this.props.history.push({
+      history.push({
         pathname: `/projects/${item.slug}`,
         state: { projectId: item.id },
       });
@@ -95,7 +96,7 @@ HomePage.propTypes = {
   projects: PropTypes.array,
   pageLoading: PropTypes.func,
   history: PropTypes.shape({
-    push: PropTypes.object,
+    push: PropTypes.func,
   }),
 };
 

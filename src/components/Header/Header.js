@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
+import { isMobile } from 'react-device-detect';
 import Menu from '../Menu/Menu';
 import './Header.scss';
 
@@ -40,10 +41,14 @@ class Header extends React.Component {
     const { prevScrollpos } = this.state;
     const currentScrollPos = window.pageYOffset;
     const visible = prevScrollpos > currentScrollPos;
-
+    
+    if (prevScrollpos >= 0) {
+      this.setState({
+        visible,
+      });
+    }
     this.setState({
       prevScrollpos: currentScrollPos,
-      visible,
     });
   }
 
@@ -84,7 +89,7 @@ class Header extends React.Component {
           'header',
           {
             ['open']: open,
-            "hidden": !visible && !open,
+            "hidden": isMobile && (!visible && !open),
           }
         )}
       >

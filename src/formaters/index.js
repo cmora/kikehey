@@ -58,12 +58,8 @@ export const formatExperience = (data) => {
 
 export const formatProjects = (data) => {
   const projects = [];
-  data.map((item) => {
-    projects.push(formatProject(item));
-  });
-  return orderBy(groupBy(projects, 'category.name'), (elem) => {
-    return elem[0].category.order;
-  });
+  data.map(item => projects.push(formatProject(item)));
+  return orderBy(groupBy(projects, 'category.name'), elem => elem[0].category.order);
 };
 
 export const formatProject = (data) => {

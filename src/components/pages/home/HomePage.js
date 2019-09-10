@@ -34,12 +34,14 @@ class HomePage extends React.Component {
     if(ref) {
       const element = this[ref];
       if (element) {
-        const top = element.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({
-          top: top - 30,
-          left: 0,
-          behavior: 'smooth',
-        });
+        setTimeout(() => {
+          const top = element.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: top - 30,
+            left: 0,
+            behavior: 'smooth',
+          });
+        }, 500);
       }
     }
   }

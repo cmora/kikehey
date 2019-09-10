@@ -8,6 +8,7 @@ import { BLOCKS } from '@contentful/rich-text-types';
 import { get, has } from 'lodash';
 import { loadProject, cleanProject } from '../../../actions/projectActions';
 import { pageLoading, toogleHeader } from '../../../actions/pageActions';
+import camelize from '../../../utils/';
 
 import './ProjectPage.scss';
 
@@ -85,10 +86,15 @@ class ProjectPage extends React.Component {
   }
 
   handleBack() {
-    const { pageLoading, history } = this.props;
+    const { pageLoading, history, project } = this.props;
+    const category = get(project, 'category.name');
+    const categoryId = camelize(category);
     pageLoading(true);
     setTimeout(() => {
-      history.push({ pathname: `/` });
+      history.push({
+        pathname: '/',
+        hash: `#${categoryId}`,
+      });
     }, 1000);
   }
   

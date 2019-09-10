@@ -13,7 +13,7 @@ const ProjectItem = ({
     <div className={`project-item ${flavor}`}>
       <div
         className="project-item_content"
-        onClick={() => onHandleProject(item)}
+        onClick={() => onHandleProject && onHandleProject(item)}
       >
         <div className="project-item_image">
           <img src={item.thumbnail} />

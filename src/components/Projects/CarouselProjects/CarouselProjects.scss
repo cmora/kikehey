@@ -18,6 +18,9 @@
             padding-right: 12px;
             opacity: 0.4;
             transition: opacity .2s;
+            @include desktop {
+              opacity: 1;
+            }
             &.slick-active {
                 opacity: 1;
             }

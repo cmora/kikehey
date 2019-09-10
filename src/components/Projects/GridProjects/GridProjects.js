@@ -6,7 +6,7 @@ import './GridProjects.scss';
 
 const GridProjects = ({
   items,
-  projectOnclik,
+  onHandleProject,
 }) => {
   if (!items || !items.length) return null;
 
@@ -17,7 +17,7 @@ const GridProjects = ({
           {
             items.map((item, i) => (
               <div className="projects-grid_item" key={i}>
-                <ProjectItem item={item} flavor="grid" projectOnclik={projectOnclik} />
+                <ProjectItem item={item} flavor="grid" onHandleProject={onHandleProject} />
               </div>
             ))
           }
@@ -29,7 +29,7 @@ const GridProjects = ({
 
 GridProjects.propTypes = {
   items: PropTypes.array,
-  projectOnclik: PropTypes.func,
+  onHandleProject: PropTypes.func,
 };
 
 export default GridProjects;

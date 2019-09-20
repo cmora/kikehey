@@ -1,15 +1,18 @@
 import React, { PropTypes } from 'react';
+import Favicon from 'react-favicon';
 import { connect } from 'react-redux';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Contact from './Contact/Contact';
 import Loader from './Loader/Loader';
+const ICON = require('../assets/images/favicon.png');
 
 class App extends React.Component {
   render () {
     const { loaded, loading, children } = this.props;
     return (
       <div id="wrapper">
+        <Favicon url={ICON} />
         <Header />
         <Loader loading={loading} loaded={loaded} />
         <Contact />

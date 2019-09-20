@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import { isMobile } from 'react-device-detect';
 
 const logo = require('../../assets/images/logo.svg');
-const bg = require('../../assets/images/img-about.png');
 import './Hero.scss';
 
 class Hero extends React.Component {

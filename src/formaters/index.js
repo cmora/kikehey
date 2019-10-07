@@ -59,7 +59,9 @@ export const formatExperience = (data) => {
 export const formatProjects = (data) => {
   const projects = [];
   data.map(item => projects.push(formatProject(item)));
-  return orderBy(groupBy(projects, 'category.name'), elem => elem[0].category.order);
+  const orderedByDate = orderBy(projects, elem => elem.publishedDate, 'desc')
+  const groupedByCategory = orderBy(groupBy(orderedByDate, 'category.name'), elem => elem[0].category.order);
+  return groupedByCategory;
 };
 
 export const formatProject = (data) => {
@@ -77,6 +79,7 @@ export const formatProject = (data) => {
     slug: slugify(get(data, 'fields.title')),
     id: get(data, 'sys.id'),
     body: get(data, 'fields.body'),
+    publishedDate: get(data, 'sys.createdAt'),
   };
 };
 

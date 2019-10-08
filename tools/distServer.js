@@ -47,7 +47,7 @@ app.post('/contact', (req, res) => {
   });
 });
 
-app.listen(port, '0.0.0.0', (err) => {
+app.listen(port, (err) => {
   if (err) {
     console.log(err);
   } else {

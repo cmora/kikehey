@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { isMobile } from 'react-device-detect';
 import './ProjectItem.scss';
 
 
@@ -10,7 +11,7 @@ const ProjectItem = ({
   if (!item) return null;
   
   return (
-    <div className={`project-item wow fadeInUp ${flavor}`}>
+    <div className={`project-item wow fadeInUp ${flavor} ${isMobile ? `${flavor}-mobile` : null}`}>
       <div
         className="project-item_content"
         onClick={() => onHandleProject && onHandleProject(item)}
@@ -18,14 +19,18 @@ const ProjectItem = ({
         <div className="project-item_image">
           <img src={item.thumbnail} />
           <div className="project-item_overlay">
-            <div className="project-item_button">
-              OPEN PROJECT
-            </div>
+            {!isMobile && (
+              <div className="project-item_button">
+                OPEN PROJECT
+              </div>
+            )}
           </div>
         </div>
-        <h5 className="project-item_title">
-          {item.title}
-        </h5>
+        {!isMobile && (
+          <h5 className="project-item_title">
+            {item.title}
+          </h5>
+        )}
       </div> 
     </div>
   );

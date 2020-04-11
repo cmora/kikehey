@@ -20,6 +20,12 @@
         }
         overflow: hidden;
         border-radius: 10px;
+        .grid-mobile & {
+          border-radius: 0;
+          img {
+            border-radius: 0;
+          }
+        }
         img {
             border-radius: 10px;
         }

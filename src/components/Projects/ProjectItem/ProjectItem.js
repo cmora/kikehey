@@ -10,7 +10,7 @@ const ProjectItem = ({
   if (!item) return null;
   
   return (
-    <div className={`project-item ${flavor}`}>
+    <div className={`project-item wow fadeInUp ${flavor}`}>
       <div
         className="project-item_content"
         onClick={() => onHandleProject && onHandleProject(item)}
@@ -18,18 +18,14 @@ const ProjectItem = ({
         <div className="project-item_image">
           <img src={item.thumbnail} />
           <div className="project-item_overlay">
-            {flavor === 'carousel' &&
-              <div className="project-item_button">
-                OPEN PROJECT
-              </div>
-            }
+            <div className="project-item_button">
+              OPEN PROJECT
+            </div>
           </div>
         </div>
-        {flavor === 'carousel' &&
-          <h5 className="project-item_title">
-            {item.title}
-          </h5>
-        }
+        <h5 className="project-item_title">
+          {item.title}
+        </h5>
       </div> 
     </div>
   );

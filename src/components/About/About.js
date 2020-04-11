@@ -14,10 +14,10 @@ const About = ({
   <div className="about-block content-block">
     <div className="row">
       <div className="column">
-        <h2 className="about-block_title content-block__title animated fadeInUp">
+        <h2 className="about-block_title content-block__title wow fadeInUp">
           {title}
         </h2>
-        <div className="content-block__description animated fadeInUp">
+        <div className="content-block__description wow fadeInUp">
         {body &&
           /* eslint-disable react/no-danger */
           <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}} />

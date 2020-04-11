@@ -7,6 +7,16 @@
         flex-wrap: wrap;
     }
     &_item {
-        flex-basis: 33.333%;
+      flex-basis: 100%;
+    }
+
+    @include desktop {
+      &_list {
+        margin: 0 -10px;
+      }
+      &_item {
+        flex-basis: 33.3%;
+        padding: 0 10px;
+      }
     }
 }

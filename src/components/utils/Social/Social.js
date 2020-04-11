@@ -14,7 +14,7 @@ const Social = ({
         const name = get(item, 'name').toLowerCase();
         return (
           <div key={name} className="social-networks_item">
-            <a  className="social-networks_item_facebook" href={get(item, 'url')}>
+            <a  className={`social-networks_item_${name}`} href={get(item, 'url')}>
               <i className={`fab fa-${name}${name === 'facebook' ? '-f' : ''}`}></i>
             </a>
           </div>

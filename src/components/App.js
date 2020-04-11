@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import WOW from "wow.js";
 import Favicon from 'react-favicon';
 import { connect } from 'react-redux';
 import Header from './Header/Header';
@@ -8,6 +9,10 @@ import Loader from './Loader/Loader';
 const ICON = require('../assets/images/favicon.png');
 
 class App extends React.Component {
+  componentDidMount() {
+    const wow = new WOW();
+    wow.init();
+  }
   render () {
     const { loaded, loading, children } = this.props;
     return (

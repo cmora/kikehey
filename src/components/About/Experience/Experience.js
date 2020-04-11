@@ -34,7 +34,7 @@ const Experience = ({
         <Slider {...settings}>
           {
             items.map((item, i) => (
-              <div className="experience-carousel_slick_item" key={i}>
+              <div className="experience-carousel_slick_item  wow fadeInDown" key={i}>
                 <ExperienceItem item={item} />
               </div>
             ))

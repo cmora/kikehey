@@ -11,7 +11,7 @@ class Projects extends React.Component {
     super(props);
     this.changeFlavor = this.changeFlavor.bind(this);
     this.state = {
-      flavor: 'carousel',
+      flavor: 'grid',
     };
   }
 

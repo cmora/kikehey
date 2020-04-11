@@ -19,8 +19,7 @@ class ProjectPage extends React.Component {
     this.handleBack = this.handleBack.bind(this);
 
     this.state = {
-      headerPosition: 'translate3d(-50%, 0, 0)',
-      arrowPosition: 'translate3d(0, 0, 0)',
+      headerPosition: 'translate3d(0, 0, 0)',
       opacity: 0,
       sticky: false,
       headHeight: 0,
@@ -39,11 +38,9 @@ class ProjectPage extends React.Component {
     const { toogleHeader } = this.props;
     toogleHeader(true);
     window.scrollTo(0, 0);
-    if (isMobile) {
-      window.addEventListener('scroll', this.handleScroll);
-      if (this.projectHead) {
-        this.detectHeaderheight();
-      }
+    window.addEventListener('scroll', this.handleScroll);
+    if (this.projectHead) {
+      this.detectHeaderheight();
     }
   }
 
@@ -52,9 +49,7 @@ class ProjectPage extends React.Component {
     toogleHeader(false);
     pageLoading(true);
     cleanProject();
-    if (isMobile) {
-      window.removeEventListener('scroll', this.handleScroll); 
-    }
+    window.removeEventListener('scroll', this.handleScroll); 
   }
 
   detectHeaderheight() {
@@ -64,23 +59,20 @@ class ProjectPage extends React.Component {
 
   handleScroll() {
     const { headerPosition, opacity } = this.state;
-    const velocityBG = 0.2;
-    const velocityArrow = 0.4;
-    const scrollTop = window.scrollY;
-    const offet = 275;
+    const velocityBG = 0.6;
+    let scrollTop = window.scrollY;
+    scrollTop = scrollTop < 0 ? 0 : scrollTop;
+    const offet = isMobile ? 275 : 500;
     if (scrollTop <= offet) {
       const opacityOffset = (scrollTop * 1) / offet;
       this.setState({
-        headerPosition: `translate3d(-50%, ${Math.round((scrollTop) * -velocityBG)}px, 0)`,
-        arrowPosition: `translate3d(0, ${Math.round((scrollTop) * velocityArrow)}px, 0)`,
-        sticky: false,
+        headerPosition: `translate3d(0, ${Math.round((scrollTop) * velocityBG)}px, 0)`,
         opacity: opacityOffset,
       });
     } else {
       this.setState({
-        headerPosition: `translate3d(-50%, ${headerPosition}px, 0)`,
+        headerPosition: `translate3d(0, ${headerPosition}px, 0)`,
         opacity,
-        sticky: true,
       });
     }
   }
@@ -109,7 +101,6 @@ class ProjectPage extends React.Component {
       opacity, 
       sticky, 
       headHeight, 
-      arrowPosition,
     } = this.state;
     const title = get(project, 'title', null);
     const body = get(project, 'body', null);
@@ -122,7 +113,11 @@ class ProjectPage extends React.Component {
         [BLOCKS.EMBEDDED_ASSET]: (node) => {
           const asset = get(node, 'data.target.fields.file.url');
           if (!asset) return null;
-          return `<img src="${asset}" />`;
+          return `
+            <div class="embedded-media">
+              <img src="${asset}" />
+            </div>
+          `;
         },
         [BLOCKS.PARAGRAPH]: (node, next) => `<p>${next(node.content).replace('\n', '<br/>')}</p>`,
       },
@@ -139,16 +134,11 @@ class ProjectPage extends React.Component {
           <div
             className="project-page_header__image"
             style={{
-              backgroundImage: !isMobile ? `url(${image})` : null,
+              backgroundImage: `url(${image})`,
+              transform: headerPosition,
             }}
-          >
-            <img
-              src={image}
-              style={{ transform: headerPosition }}
-            />
-          </div>
+          />
           <div className="project-page_header__overlay" style={{ opacity: opacity }} />
-          <div className="project-page_header__arrow" style={{ opacity: opacity, transform: arrowPosition }} />
           <div className="project-page_header__close" onClick={this.handleBack} />
         </header>
         <div className="row">

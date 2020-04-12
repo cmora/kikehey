@@ -17,12 +17,14 @@ class ProjectPage extends React.Component {
     super(props); 
     this.handleScroll = this.handleScroll.bind(this);
     this.handleBack = this.handleBack.bind(this);
+    this.scrollPos = 0;
 
     this.state = {
       headerPosition: 'translate3d(0, 0, 0)',
       opacity: 0,
       sticky: false,
       headHeight: 0,
+      closeButtonVisible: true,
     };
 
     const { location, loadProject, history } = this.props;
@@ -58,15 +60,25 @@ class ProjectPage extends React.Component {
   }
 
   handleScroll() {
-    const { headerPosition, opacity } = this.state;
+    const { headerPosition, opacity, closeButtonVisible } = this.state;
     const velocityBG = 0.6;
-    let scrollTop = window.scrollY;
-    scrollTop = scrollTop < 0 ? 0 : scrollTop;
+    const scrollPos = window.scrollY;
+    if (scrollPos > this.scrollPos){
+      if (closeButtonVisible) {
+        this.setState({ closeButtonVisible: false });
+      }
+    } else {
+      if (!closeButtonVisible) {
+        this.setState({ closeButtonVisible: true });
+      }
+    }
+    this.scrollPos = scrollPos < 0 ? 0 : scrollPos;
+    
     const offet = isMobile ? 275 : 500;
-    if (scrollTop <= offet) {
-      const opacityOffset = (scrollTop * 1) / offet;
+    if (this.scrollPos <= offet) {
+      const opacityOffset = (this.scrollPos * 1) / offet;
       this.setState({
-        headerPosition: `translate3d(0, ${Math.round((scrollTop) * velocityBG)}px, 0)`,
+        headerPosition: `translate3d(0, ${Math.round((this.scrollPos) * velocityBG)}px, 0)`,
         opacity: opacityOffset,
       });
     } else {
@@ -100,7 +112,8 @@ class ProjectPage extends React.Component {
       headerPosition,
       opacity, 
       sticky, 
-      headHeight, 
+      headHeight,
+      closeButtonVisible,
     } = this.state;
     const title = get(project, 'title', null);
     const body = get(project, 'body', null);
@@ -139,7 +152,16 @@ class ProjectPage extends React.Component {
             }}
           />
           <div className="project-page_header__overlay" style={{ opacity: opacity }} />
-          <div className="project-page_header__close" onClick={this.handleBack} />
+          <div
+            className={classnames(
+              'project-page_header__close',
+              {
+                ['button-visible']: closeButtonVisible,
+                ['button-hidden']: !closeButtonVisible,
+              }
+            )}
+            onClick={this.handleBack}
+          />
         </header>
         <div className="row">
           <div className="column">

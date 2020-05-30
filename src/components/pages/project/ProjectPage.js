@@ -56,6 +56,7 @@ class ProjectPage extends React.Component {
       const slug = pathname.replace('/projects/', '');
       const projectID = getProjectIDbySlug(projects, slug);
       if (projectID) {
+        window.prerenderReady = true;
         loadProject(projectID);
       } else {
         history.push({ pathname: '/404' });

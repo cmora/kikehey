@@ -16,6 +16,13 @@ class App extends React.Component {
     const wow = new WOW();
     wow.init();
   }
+
+  componentDidUpdate() {
+    if (meta) {
+      window.prerenderReady = true;
+    }
+  }
+
   render () {
     const { loaded, loading, children } = this.props;
     return (

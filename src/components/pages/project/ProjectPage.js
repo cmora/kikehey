@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import DocumentMeta from 'react-document-meta';
 import classnames from 'classnames';
 import { isMobile } from 'react-device-detect';
 import { connect } from 'react-redux';
@@ -119,7 +120,7 @@ class ProjectPage extends React.Component {
 
 
   render () {
-    const { project, pageLoading } = this.props;
+    const { project, pageLoading, location } = this.props;
     if (project && has(project, 'title') ) {
       pageLoading(false);
     }
@@ -152,65 +153,85 @@ class ProjectPage extends React.Component {
       },
     };
 
+    const meta = {
+      title: title,
+      description: title,
+      canonical: `http://kikehey.com${location.pathname}`,
+      meta: {
+        name: {
+          keywords: 'portfolio,webdesign,graphic design,web,designer,reactjs,react,logo,branding',
+        },
+        property: {
+          'og:title': title,
+          'og:description': title,
+          'og:type': 'website',
+          'og:url': `http://kikehey.com${location.pathname}`,
+          'og:image': image,
+        },
+      },
+    };
+
     return (
-      <div className={classnames(
-        'project-page',
-        {
-          ['sticky']: sticky,
-        }
-      )}>
-        <header className="project-page_header">
-          <div
-            className="project-page_header__image"
-            style={{
-              backgroundImage: `url(${image})`,
-              transform: headerPosition,
-            }}
-          />
-          <div className="project-page_header__overlay" style={{ opacity: opacity }} />
-          <div
-            className={classnames(
-              'project-page_header__close',
-              {
-                ['button-visible']: closeButtonVisible,
-                ['button-hidden']: !closeButtonVisible,
-              }
-            )}
-            onClick={this.handleBack}
-          />
-        </header>
-        <div className="row">
-          <div className="column">
+      <DocumentMeta {...meta}>
+        <div className={classnames(
+          'project-page',
+          {
+            ['sticky']: sticky,
+          }
+        )}>
+          <header className="project-page_header">
             <div
-              className="project-page_project__head"
-              ref={(element) => this.projectHead = element}
-            >
-              <h1 className="project-page_body__title">{title}</h1>
-            </div>
-          </div>
-        </div>
-        <main className="project-page_content">
+              className="project-page_header__image"
+              style={{
+                backgroundImage: `url(${image})`,
+                transform: headerPosition,
+              }}
+            />
+            <div className="project-page_header__overlay" style={{ opacity: opacity }} />
+            <div
+              className={classnames(
+                'project-page_header__close',
+                {
+                  ['button-visible']: closeButtonVisible,
+                  ['button-hidden']: !closeButtonVisible,
+                }
+              )}
+              onClick={this.handleBack}
+            />
+          </header>
           <div className="row">
             <div className="column">
-              <div className="project-page_body">
-                <div className="project-page_fake-head" style={{ height: headHeight }} />
-                <div className="project-page_body__content">
-                  <div className="project-page_body__company">{company}</div>
-                  {body &&
-                    /* eslint-disable react/no-danger */
-                    <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body, htmlOptions)}} />
-                  }
-                </div>
-                {url &&
-                  <div className="project-page_body_link">
-                    <a href={url} target="_blank">See the online project here!</a>
-                  </div>
-                }
+              <div
+                className="project-page_project__head"
+                ref={(element) => this.projectHead = element}
+              >
+                <h1 className="project-page_body__title">{title}</h1>
               </div>
             </div>
           </div>
-        </main>
-      </div>
+          <main className="project-page_content">
+            <div className="row">
+              <div className="column">
+                <div className="project-page_body">
+                  <div className="project-page_fake-head" style={{ height: headHeight }} />
+                  <div className="project-page_body__content">
+                    <div className="project-page_body__company">{company}</div>
+                    {body &&
+                      /* eslint-disable react/no-danger */
+                      <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body, htmlOptions)}} />
+                    }
+                  </div>
+                  {url &&
+                    <div className="project-page_body_link">
+                      <a href={url} target="_blank">See the online project here!</a>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </DocumentMeta>
     );
   }
 }

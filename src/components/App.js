@@ -17,14 +17,11 @@ class App extends React.Component {
     wow.init();
   }
 
-  componentDidUpdate() {
+  render () {
+    const { loaded, loading, children } = this.props;
     if (meta) {
       window.prerenderReady = true;
     }
-  }
-
-  render () {
-    const { loaded, loading, children } = this.props;
     return (
       <div id="wrapper">
         <Helmet

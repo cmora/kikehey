@@ -31,8 +31,8 @@ app.get('*', (req, res) => {
 app.post('/contact', (req, res) => {
   const {
     email = '',
-    name = '', 
-    message = '', 
+    name = '',
+    message = '',
     subject = '',
   } = req.body;
 

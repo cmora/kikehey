@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 
 app.use(compression());
 app.use(express.static('dist'));
+app.use(require('prerender-node').set('prerenderToken', 'Dyz2kKHvEkQSliPdOc5t'));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join( __dirname, '../dist/index.html'));

@@ -23,8 +23,8 @@ app.get('*', (req, res) => {
 app.post('/contact', (req, res) => {
   const {
     email = '',
-    name = '', 
-    message = '', 
+    name = '',
+    message = '',
     subject = '',
   } = req.body;
 
@@ -47,7 +47,7 @@ app.post('/contact', (req, res) => {
   });
 });
 
-app.listen(port, (err) => {
+app.listen(port, '0.0.0.0', (err) => {
   if (err) {
     console.log(err);
   } else {

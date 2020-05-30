@@ -100,10 +100,13 @@
         max-width: 1040px;
         border-radius: 0 0 5px 5px;
         color: $black;
-        font-size: rem(14);
+        font-size: rem(16);
+        line-height: rem(26);
         @include desktop {
             margin: 0 auto;
             padding: 0 0 40px;
+            font-size: rem(18);
+            line-height: rem(28);
         }
         &__title {
             color: $black;
@@ -123,6 +126,20 @@
               margin-bottom: 40px;
             }
         }
+
+        code {
+          font-family: $font-open-sans;
+          background-color: #E6F4FB;
+          padding: 0 5px;
+        }
+
+        ul, ol {
+          margin-left: 25px;
+          @include desktop {
+            margin-left: 30px;
+          }
+        }
+
         h1 , h2, h3, h4, h5, h6 {
             color: $black;
             font-family: $font-open-sans;
@@ -136,33 +153,39 @@
         p {
           margin-bottom: 22px;
           min-height: 1rem;
+          font-size: rem(16);
+          line-height: rem(26);
+          @include desktop {
+            font-size: rem(18);
+            line-height: rem(28);
+          }
         }
 
         a {
             color: $pink;
             text-decoration: none;
         }
-        
+
         h2 {
             font-size: rem(30);
         }
-        
+
         h3 {
             font-size: rem(26);
         }
-        
+
         h4 {
             font-size: rem(22);
         }
-        
+
         h5 {
             font-size: rem(18);
         }
-        
+
         h6 {
             font-size: rem(14);
     }
-    
+
     .embedded-media {
       width: 100vw;
       position: relative;
@@ -178,7 +201,7 @@
         margin-bottom: 40px;
       }
     }
-		
+
 
         &_link {
             text-align: center;
@@ -212,7 +235,7 @@
         padding: 30px 0 0;
         border-radius: 5px 5px 0 0;
         transition: all .2s;
-        border-bottom: 1px solid transparent; 
+        border-bottom: 1px solid transparent;
         position: relative;
         .sticky & {
             position: fixed;

@@ -14,10 +14,10 @@ const About = ({
   <div className="about-block content-block">
     <div className="row">
       <div className="column">
-        <h2 className="about-block_title content-block__title wow fadeInUp">
+        <h2 className="about-block_title content-block__title">
           {title}
         </h2>
-        <div className="content-block__description wow fadeInUp">
+        <div className="content-block__description">
         {body &&
           /* eslint-disable react/no-danger */
           <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}} />
@@ -45,4 +45,3 @@ About.propTypes = {
 };
 
 export default About;
- 

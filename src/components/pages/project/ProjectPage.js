@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import DocumentMeta from 'react-document-meta';
+import { Helmet } from "react-helmet";
 import classnames from 'classnames';
 import { isMobile } from 'react-device-detect';
 import { connect } from 'react-redux';
@@ -10,7 +10,8 @@ import { get, has } from 'lodash';
 import { loadProject, cleanProject } from '../../../actions/projectActions';
 import { loadProjects } from '../../../actions/projectsActions';
 import { pageLoading, toogleHeader } from '../../../actions/pageActions';
-import { camelize, getProjectIDbySlug} from '../../../utils/';
+import { camelize, getProjectIDbySlug, getMetaTags } from '../../../utils/';
+import { SITE_URL } from '../../../config';
 
 import './ProjectPage.scss';
 
@@ -156,23 +157,25 @@ class ProjectPage extends React.Component {
     const meta = {
       title: title,
       description: title,
-      canonical: `http://kikehey.com${location.pathname}`,
-      meta: {
-        name: {
-          keywords: 'portfolio,webdesign,graphic design,web,designer,reactjs,react,logo,branding',
-        },
-        property: {
-          'og:title': title,
-          'og:description': title,
-          'og:type': 'website',
-          'og:url': `http://kikehey.com${location.pathname}`,
-          'og:image': image,
-        },
-      },
+      image,
     };
 
     return (
-      <DocumentMeta {...meta}>
+      <div>
+        <Helmet
+          htmlAttributes={{
+            itemscope: undefined,
+            itemtype: 'http://schema.org/WebPage',
+          }}
+          title={title}
+          link={[
+            {
+              rel: 'canonical',
+              href: SITE_URL,
+            },
+          ]}
+          meta={getMetaTags(meta, location.pathname)}
+        />
         <div className={classnames(
           'project-page',
           {
@@ -231,7 +234,7 @@ class ProjectPage extends React.Component {
             </div>
           </main>
         </div>
-      </DocumentMeta>
+      </div>
     );
   }
 }

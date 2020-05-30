@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { get } from 'lodash';
 import { Link } from 'react-router';
 import Social from '../utils/Social/Social';
-import camelize from '../../utils';
+import { camelize } from '../../utils';
 
 const logo = require('../../assets/images/icon-logo.svg');
 import './Menu.scss';
@@ -95,4 +95,3 @@ Menu.propTypes = {
 };
 
 export default Menu;
- 

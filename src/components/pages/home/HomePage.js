@@ -5,7 +5,7 @@ import { get } from 'lodash';
 import Hero from '../../Hero/Hero';
 import About from '../../About/About';
 import Projects from '../../Projects/Projects';
-import camelize from '../../../utils';
+import { camelize } from '../../../utils';
 import { pageLoading } from '../../../actions/pageActions';
 
 class HomePage extends React.Component {

@@ -7,7 +7,7 @@ import ProjectPage from './components/pages/project/ProjectPage';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
-    <Route path="projects/:projectId" component={ProjectPage} />
+    <Route path="/projects/:projectId" component={ProjectPage} />
     <Route path="/404" component={HomePage} />
     <Redirect from="*" to="/" />
   </Route>

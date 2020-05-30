@@ -7,14 +7,15 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
 import { get, has } from 'lodash';
 import { loadProject, cleanProject } from '../../../actions/projectActions';
+import { loadProjects } from '../../../actions/projectsActions';
 import { pageLoading, toogleHeader } from '../../../actions/pageActions';
-import camelize from '../../../utils/';
+import { camelize, getProjectIDbySlug} from '../../../utils/';
 
 import './ProjectPage.scss';
 
 class ProjectPage extends React.Component {
   constructor(props) {
-    super(props); 
+    super(props);
     this.handleScroll = this.handleScroll.bind(this);
     this.handleBack = this.handleBack.bind(this);
     this.scrollPos = 0;
@@ -27,12 +28,12 @@ class ProjectPage extends React.Component {
       closeButtonVisible: true,
     };
 
-    const { location, loadProject, history } = this.props;
+    const { location, loadProject } = this.props;
     const projectId = get(location, 'state.projectId');
     if (projectId) {
       loadProject(projectId);
     } else {
-      history.push({ pathname: '/404' });
+      loadProjects();
     }
   }
 
@@ -46,12 +47,26 @@ class ProjectPage extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { projects, location, loadProject, history } = this.props;
+    if (projects && (projects !== prevProps.projects)) {
+      const { pathname } = location;
+      const slug = pathname.replace('/projects/', '');
+      const projectID = getProjectIDbySlug(projects, slug);
+      if (projectID) {
+        loadProject(projectID);
+      } else {
+        history.push({ pathname: '/404' });
+      }
+    }
+  }
+
   componentWillUnmount() {
     const { pageLoading, cleanProject, toogleHeader } = this.props;
     toogleHeader(false);
     pageLoading(true);
     cleanProject();
-    window.removeEventListener('scroll', this.handleScroll); 
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   detectHeaderheight() {
@@ -73,7 +88,7 @@ class ProjectPage extends React.Component {
       }
     }
     this.scrollPos = scrollPos < 0 ? 0 : scrollPos;
-    
+
     const offet = isMobile ? 275 : 500;
     if (this.scrollPos <= offet) {
       const opacityOffset = (this.scrollPos * 1) / offet;
@@ -101,7 +116,8 @@ class ProjectPage extends React.Component {
       });
     }, 1000);
   }
-  
+
+
   render () {
     const { project, pageLoading } = this.props;
     if (project && has(project, 'title') ) {
@@ -110,8 +126,8 @@ class ProjectPage extends React.Component {
 
     const {
       headerPosition,
-      opacity, 
-      sticky, 
+      opacity,
+      sticky,
       headHeight,
       closeButtonVisible,
     } = this.state;
@@ -120,7 +136,7 @@ class ProjectPage extends React.Component {
     const image = get(project, 'image', null);
     const company = get(project, 'company', null);
     const url = get(project, 'url', null);
-    
+
     const htmlOptions = {
       renderNode: {
         [BLOCKS.EMBEDDED_ASSET]: (node) => {
@@ -206,6 +222,7 @@ ProjectPage.propTypes = {
   pageLoading: PropTypes.func,
   cleanProject: PropTypes.func,
   toogleHeader: PropTypes.func,
+  projects: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
@@ -214,6 +231,7 @@ ProjectPage.propTypes = {
 const mapStateToProps = (state) => {
   return {
     project: state.project,
+    projects: state.projects,
   };
 };
 
@@ -223,9 +241,8 @@ const mapDispatchToProps = (dispatch) => {
     pageLoading: bindActionCreators(pageLoading, dispatch),
     cleanProject: bindActionCreators(cleanProject, dispatch),
     toogleHeader: bindActionCreators(toogleHeader, dispatch),
+    loadProjects: bindActionCreators(loadProjects, dispatch),
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectPage);
-
-

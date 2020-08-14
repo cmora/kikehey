@@ -28,7 +28,7 @@
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
     "contentful": "^7.0.5",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "nodemailer": "^4.7.0",
     "prerender-node": "^3.2.5",
     "react": "15.0.2",

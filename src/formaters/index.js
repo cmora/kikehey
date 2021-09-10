@@ -80,6 +80,7 @@ export const formatProject = (data) => {
     id: get(data, 'sys.id'),
     body: get(data, 'fields.body'),
     publishedDate: get(data, 'sys.createdAt'),
+    externalUrl: get(data, 'fields.externalUrl'),
   };
 };
 

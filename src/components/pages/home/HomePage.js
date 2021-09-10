@@ -51,15 +51,19 @@ class HomePage extends React.Component {
     return hash.replace('#','');
   }
 
-  onHandleProject(item) {
+  onHandleProject({ id, slug, externalUrl }) {
     const { pageLoading, history } = this.props;
-    pageLoading(true);
-    setTimeout(() => {
-      history.push({
-        pathname: `/projects/${item.slug}`,
-        state: { projectId: item.id },
-      });
-    }, 1000);
+    if (externalUrl) {
+      window.open(externalUrl, '_blank').focus();
+    } else {
+      pageLoading(true);
+      setTimeout(() => {
+        history.push({
+          pathname: `/projects/${slug}`,
+          state: { projectId: id },
+        });
+      }, 1000);
+    }
   }
 
   render () {

@@ -72,6 +72,7 @@ class HomePage extends React.Component {
     const aboutImage = get(about, 'image');
     return (
       <div id="main">
+        <p>Kike hey</p>
         <Hero image={aboutImage} />
         <div id="container">
           <div ref={(element) => this.about = element}>

@@ -2,6 +2,11 @@
   "name": "kikehey",
   "version": "1.0.0",
   "description": "Kike Peña - Portfolio",
+  "engines": {
+     "node": "14.17.0",
+     "npm": "6.14.13",
+     "yarn": "1.22.10"
+  },
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel open:src lint:watch test:watch",

@@ -16,6 +16,7 @@ const Social = ({
           <div key={name} className="social-networks_item">
             <a  className={`social-networks_item_${name}`} href={get(item, 'url')}>
               <i className={`fab fa-${name}${name === 'facebook' ? '-f' : ''}`}></i>
+              <span className="name">{name}</span>
             </a>
           </div>
         );
@@ -29,4 +30,3 @@ Social.propTypes = {
 };
 
 export default Social;
- 

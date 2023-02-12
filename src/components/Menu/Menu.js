@@ -5,7 +5,6 @@ import { Link } from 'react-router';
 import Social from '../utils/Social/Social';
 import { camelize } from '../../utils';
 
-const logo = require('../../assets/images/icon-logo.svg');
 import './Menu.scss';
 
 const Menu = ({
@@ -27,11 +26,6 @@ const Menu = ({
           }
         )}
       >
-        <div className="main-menu_top__logo">
-          <Link to="/" onClick={() => handleNavigation(true)}>
-            <img src={logo} />
-          </Link>
-        </div>
         <div className="close-menu" onClick={handleOpen} />
       </div>
       <div className="main-menu_list">

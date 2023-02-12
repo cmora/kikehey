@@ -1,4 +1,5 @@
 @import "../../../assets/styles/variables/global";
+@import "../../../assets/styles/mixins/utils";
 
 .social-networks {
     display: flex;
@@ -25,16 +26,42 @@
                     transform: scale(1.4);
                 }
                 &.social-networks_item_facebook {
-                    color: #3b5998;    
+                    color: #3b5998;
                 }
                 &.social-networks_item_instagram {
-                    color: #c13584;    
+                    color: #c13584;
                 }
                 &.social-networks_item_twitter {
-                    color: #1da1f2;    
+                    color: #1da1f2;
                 }
                 &.social-networks_item_linkedin {
-                    color: #0077b5;    
+                    color: #0077b5;
+                }
+            }
+
+            .name {
+                display: none;
+            }
+        }
+
+        @include desktop {
+            margin: 0 20px;
+
+            a {
+                width: auto;
+                i {
+                    display: none;
+                }
+                .name {
+                    display: block;
+                    text-transform: capitalize;
+                    font-size: rem(20);
+                }
+
+                &:hover {
+                    .name {
+                        color: $pink;
+                    }
                 }
             }
         }

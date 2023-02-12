@@ -59,15 +59,7 @@
     }
     &_top {
         display: flex;
-        justify-content: space-between;
-        &__logo {
-            display: inline-block;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: #333333;
-            padding: 10px;
-        }
+        justify-content: end;
     }
     &_list {
         height: calc(100vh - 240px);
@@ -84,25 +76,31 @@
         transition: all .2s;
         max-width: 620px;
         li {
-            text-transform: uppercase;
-            font-size: rem(28);
+            font-size: rem(32);
             margin: 5px 0;
+            font-family: $font-neue-haas-grotesk;
             a {
-                padding: 10px 0;
+                padding: 5px 0;
                 text-decoration: none;
                 color: $white;
+                width: 270px;
+                margin: 0 auto;
+                text-align: left;
+                display: block;
             }
         }
     }
     @include desktop {
         &__nav {
+            max-width: 450px;
             li {
-                font-size: rem(34);
+                font-size: rem(50);
                 a {
                     transition: all 0.2s;
                     display: inline-block;
                     width: 100%;
                     position: relative;
+                    padding: 5px 20px;
                     &::before {
                         content: "";
                         position: absolute;

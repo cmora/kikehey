@@ -1,14 +1,16 @@
 import React, { PropTypes } from 'react';
 import { isMobile } from 'react-device-detect';
+import Logo from '../Logo/Logo';
 
-const logo = require('../../assets/images/logo.svg');
 import './Hero.scss';
+
+const imageBakground = require('../../assets/images/kb-profile-image.png');
 
 class Hero extends React.Component {
   constructor(props) {
     super(props);
     this.handleScroll = this.handleScroll.bind(this);
-    
+
     this.state = {
       backgroundPosition: 'translate3d(0, 0, 0)',
       logoPosition: 'translate3d(0, 0, 0)',
@@ -24,12 +26,12 @@ class Hero extends React.Component {
   }
 
   handleScroll() {
-    const velocityBG = 0.5;
-    const velocityLogo = 0.3;
+    const velocityBG = 0.4;
+    const velocityLogo = 0.2;
     const scrollTop = window.scrollY;
     if (isMobile) {
       this.setState({
-        logoPosition: `translate3d(0, ${Math.round((scrollTop) * velocityLogo)}px, 0)`,
+        logoPosition: `translate3d(0, -${Math.round((scrollTop) * velocityLogo)}px, 0)`,
       });
     } else {
       this.setState({
@@ -51,13 +53,12 @@ class Hero extends React.Component {
         <div className="hero-intro_image">
           <img
             className="hero-intro_img"
-            src={image}
+            src={imageBakground}
             style={{ transform: backgroundPosition }}
           />
-          <img
-            src={logo}
-            style={{ transform: logoPosition }}
-          />
+          <div className="logo-container" style={{ transform: logoPosition }}>
+            <Logo />
+          </div>
         </div>
         <span className="hero-intro_mouse">
           <span className="hero-intro_mouse__wheel" />
@@ -73,4 +74,3 @@ Hero.propTypes = {
 };
 
 export default Hero;
- 

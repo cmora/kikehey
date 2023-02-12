@@ -3,6 +3,8 @@ import Experience from './Experience/Experience';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import './About.scss';
+import Logo from '../Logo/Logo';
+
 const downloadIcon = require('../../assets/images/download.svg');
 
 const About = ({
@@ -14,16 +16,16 @@ const About = ({
   <div className="about-block content-block">
     <div className="row">
       <div className="column">
-        <h2 className="about-block_title content-block__title">
-          {title}
-        </h2>
-        <div className="content-block__description">
-        {body &&
-          /* eslint-disable react/no-danger */
-          <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}} />
-        }
+        <div className="logo-container">
+          <Logo />
         </div>
-        <Experience items={experience} />
+        <div className="content-block__description">
+          {body &&
+            /* eslint-disable react/no-danger */
+            <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}} />
+          }
+        </div>
+        {/* <Experience items={experience} />
         {resume &&
           <div className="about-block_resume">
             <a href={resume} target="_blank">
@@ -31,7 +33,7 @@ const About = ({
               <img src={downloadIcon} />
             </a>
           </div>
-        }
+        } */}
       </div>
     </div>
   </div>

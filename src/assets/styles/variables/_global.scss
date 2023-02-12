@@ -5,15 +5,19 @@ $fonts-path: '../fonts/';
 $font-a: 'sas';
 $font-roboto-slab: 'Roboto Slab';
 $font-open-sans: 'Open Sans';
+$font-helvetica: 'helveticaneue';
+$font-neue-haas-grotesk: 'neuehaasgrotesk';
 
 // === Colors ===
 $white: #ffffff;
+$background: #121212;
 $black: #000000;
 $pink: #F93251;
-$body: #9B9B9B;
+$body: $white;
 
 // === Media Queries ===
 $phone-width: 480px;
 $tablet-portrait-width: 580px;
 $tablet-width: 768px;
 $desktop-width: 1024px;
+$desktop-large-width: 1441px;

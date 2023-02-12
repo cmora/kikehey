@@ -8,6 +8,8 @@ import Projects from '../../Projects/Projects';
 import { camelize } from '../../../utils';
 import { pageLoading } from '../../../actions/pageActions';
 
+import './HomePage.scss';
+
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
@@ -72,12 +74,20 @@ class HomePage extends React.Component {
     const aboutImage = get(about, 'image');
     return (
       <div id="main">
-        <p>Kike hey</p>
-        <Hero image={aboutImage} />
-        <div id="container">
-          <div ref={(element) => this.about = element}>
-            <About {...about} experience={experience} />
+        <div className="top-block">
+          <div className="row">
+            <div className="column large-6">
+              <Hero image={aboutImage} />
+            </div>
+            <div className="column large-6">
+              <div className="about-container" ref={(element) => this.about = element}>
+                <About {...about} experience={experience} />
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div id="container">
           {projectKeys && projectKeys.length > 0 &&
             projectKeys.map((key) => {
               const category = get(projects[key][0], 'category.name');

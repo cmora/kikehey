@@ -1,0 +1,45 @@
+@import "../../assets/styles/variables/global";
+@import "../../assets/styles/mixins/utils";
+
+.logo {
+  width: 170px;
+  margin: 0 auto;
+
+  &_image {
+      display: block;
+      margin-bottom: 18px;
+  }
+
+  &_title {
+      font-size: rem(23.5);
+      margin: 0;
+  }
+
+  @include desktop {
+    width: 500px;
+
+    &_image {
+      max-width: 160px;
+      margin-bottom: 40px;
+    }
+
+    &_title {
+      font-size: rem(60);
+      margin-bottom: 40px;
+    }
+  }
+
+  @include desktopLarge {
+    width: 100%;
+
+    &_image {
+      max-width: 214px;
+      margin-bottom: 68px;
+    }
+
+    &_title {
+      font-size: rem(90);
+      margin-bottom: 68px;
+    }
+  }
+}

@@ -9,9 +9,9 @@ html {
 }
 
 body {
-  font-family: $font-open-sans;
+  font-family: $font-helvetica;
   height: 100%;
-  background-color: $black;
+  background-color: $background;
   color: $body;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
@@ -22,10 +22,10 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: $black; 
+  background: $black;
 }
 ::-webkit-scrollbar-thumb {
-  background: $pink; 
+  background: $pink;
 }
 
 img {
@@ -48,10 +48,9 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $font-roboto-slab;
-  font-weight: 600;
+  font-family: $font-neue-haas-grotesk;
+  font-weight: 700;
   line-height: 1.05;
-  text-transform: uppercase;
   margin-bottom: 1rem;
   color: $white;
 }
@@ -101,11 +100,28 @@ h6 {
 .row {
   max-width: 1440px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  @include desktop {
+    flex-direction: row;
+  }
 }
 
 .column {
   padding: 0 20px;
   width: 100%;
+
+  .column {
+    padding: 0;
+  }
+
+  @include desktop {
+    &.large-6 {
+      width: 50%;
+    }
+  }
+
   @include desktop {
     padding: 0 30px;
   }

@@ -9,23 +9,23 @@ const ExperienceItem = ({
 
   return (
     <div className="experience-item">
-      <div className="experience-item_date">
-        ( {item.startDate} - {item.endDate ? item.endDate : 'Actual'} )
-      </div>
-      <h5 className="experience-item_company">
-        {item.company}
-      </h5>
-      <div className="experience-item_role">
-        - {item.role} -
-      </div>
-      <div className="experience-item_description">
-        {item.description}
-      </div>
       {item.companyLogo &&
         <div className="experience-item_logo">
           <img src={item.companyLogo} />
         </div>
       }
+      <div className="experience-item_role">
+        {item.role}
+      </div>
+      <div className="experience-item_date">
+        ( {item.startDate} - {item.endDate ? item.endDate : 'Actual'} )
+      </div>
+      {/* <h5 className="experience-item_company">
+        {item.company}
+      </h5> */}
+      <div className="experience-item_description">
+        {item.description}
+      </div>
     </div>
   );
 };
@@ -35,4 +35,3 @@ ExperienceItem.propTypes = {
 };
 
 export default ExperienceItem;
- 

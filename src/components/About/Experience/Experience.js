@@ -10,37 +10,11 @@ const Experience = ({
 }) => {
   if (!items || !items.length) return null;
 
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          variableWidth: true,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   return (
-    <div className="experience-carousel">
-      <div className="experience-carousel_wrap">
-        <Slider {...settings}>
-          {
-            items.map((item, i) => (
-              <div className="experience-carousel_slick_item" key={i}>
-                <ExperienceItem item={item} />
-              </div>
-            ))
-          }
-        </Slider>
-      </div>
+    <div className="experience-block">
+      {items.map((item, i) => (
+        <ExperienceItem key={i} item={item} />
+      ))}
     </div>
   );
 };
@@ -50,4 +24,3 @@ Experience.propTypes = {
 };
 
 export default Experience;
- 

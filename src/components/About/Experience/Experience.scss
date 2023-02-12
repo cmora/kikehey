@@ -1,34 +1,32 @@
 @import "../../../assets/styles/variables/global";
 @import "../../../assets/styles/mixins/utils";
 
-.experience-carousel {
-    margin: 2rem 0;
-    &_wrap {
-        position: relative;
-    }
-    .slick {
-        &-arrow {
-            display: none !important;
-            @include desktop {
-                display: block !important;
-            }
-        }
-        &-slide {
-            width: 70vw;
-            padding-right: 20px;
-            padding-bottom: 10px;
-            opacity: 0.4;
-            transition: opacity .2s;
-            &.slick-active {
-                opacity: 1;
-            }
-        }
-    }
+.experience-block {
+    margin: 48px 0;
+
+    // .slick {
+    //     &-arrow {
+    //         display: none !important;
+    //         @include desktop {
+    //             display: block !important;
+    //         }
+    //     }
+    //     &-slide {
+    //         width: 70vw;
+    //         padding-right: 20px;
+    //         padding-bottom: 10px;
+    //         opacity: 0.4;
+    //         transition: opacity .2s;
+    //         &.slick-active {
+    //             opacity: 1;
+    //         }
+    //     }
+    // }
     @include tablet-portrait {
-        .slick {
-            &-slide {
-                width: 40vw;
-            }
-        }
+        // .slick {
+        //     &-slide {
+        //         width: 40vw;
+        //     }
+        // }
     }
 }

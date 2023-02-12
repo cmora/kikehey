@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import classnames from 'classnames';
 import { get } from 'lodash';
 import Hero from '../../Hero/Hero';
 import About from '../../About/About';
@@ -9,11 +10,13 @@ import { camelize } from '../../../utils';
 import { pageLoading, toogleHeader } from '../../../actions/pageActions';
 
 import './WorkExperiencePage.scss';
+import Experience from '../../About/Experience/Experience';
 
 class WorkExperiencePage extends React.Component {
   constructor(props) {
     super(props);
-    // this.onHandleProject = this.onHandleProject.bind(this);
+
+    this.handleBack = this.handleBack.bind(this);
   }
 
   componentDidMount() {
@@ -23,8 +26,9 @@ class WorkExperiencePage extends React.Component {
     //   this.navigateToBlock(hash);
     // }
     // pageLoading(false);
-    const { toogleHeader } = this.props;
+    const { toogleHeader, pageLoading } = this.props;
     toogleHeader(true);
+    pageLoading(false);
   }
 
 
@@ -35,77 +39,46 @@ class WorkExperiencePage extends React.Component {
     // }
   }
 
-  // navigateToBlock(ref) {
-  //   if(ref) {
-  //     const element = this[ref];
-  //     if (element) {
-  //       setTimeout(() => {
-  //         const top = element.getBoundingClientRect().top + window.scrollY;
-  //         window.scrollTo({
-  //           top: top - 30,
-  //           left: 0,
-  //           behavior: 'smooth',
-  //         });
-  //       }, 500);
-  //     }
-  //   }
-  // }
-
-  // getHashFromUrl() {
-  //   const { hash } = this.props.location;
-  //   return hash.replace('#','');
-  // }
-
-  // onHandleProject({ id, slug, externalUrl }) {
-  //   const { pageLoading, history } = this.props;
-  //   if (externalUrl) {
-  //     window.open(externalUrl, '_blank').focus();
-  //   } else {
-  //     pageLoading(true);
-  //     setTimeout(() => {
-  //       history.push({
-  //         pathname: `/projects/${slug}`,
-  //         state: { projectId: id },
-  //       });
-  //     }, 1000);
-  //   }
-  // }
-
   componentWillUnmount() {
     const { pageLoading, toogleHeader } = this.props;
     toogleHeader(false);
     pageLoading(true);
-    // window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleBack() {
+    const { pageLoading, history } = this.props;
+    pageLoading(true);
+    setTimeout(() => {
+      history.push({
+        pathname: '/',
+      });
+    }, 1000);
   }
 
   render () {
-    const { experience, about, projects } = this.props;
-    const projectKeys = Object.keys(projects);
-    const aboutImage = get(about, 'image');
+    const { experience } = this.props;
+
     return (
       <div className="work-experience" id="main">
-        {/* <div className="top-block">
-          <div className="row">
-            <div className="column large-6">
-              <Hero image={aboutImage} />
-            </div>
-            <div className="column large-6">
-              <div className="about-container" ref={(element) => this.about = element}>
-                <About {...about} experience={experience} />
-              </div>
+        <div
+          className="close-button"
+          onClick={this.handleBack}
+        />
+        <div className="row">
+          <div className="column">
+            <div className="work-experience_container">
+              <h1 className="page-title">Work experience</h1>
+              <Experience items={experience} />
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     );
   }
 }
 
 WorkExperiencePage.propTypes = {
-  about: PropTypes.object,
-  location: PropTypes.object,
   experience: PropTypes.array,
-  projects: PropTypes.array,
   pageLoading: PropTypes.func,
   toogleHeader: PropTypes.func,
   history: PropTypes.shape({
@@ -115,9 +88,7 @@ WorkExperiencePage.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    about: state.sections['1xZa2s7iXOoOa0s2wQWUOi'],
     experience: state.experience,
-    projects: state.projects,
   };
 };
 

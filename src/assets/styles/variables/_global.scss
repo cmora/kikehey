@@ -3,14 +3,14 @@
 // Fonts
 $fonts-path: '../fonts/';
 $font-a: 'sas';
-$font-roboto-slab: 'Roboto Slab';
-$font-open-sans: 'Open Sans';
 $font-helvetica: 'helveticaneue';
 $font-neue-haas-grotesk: 'neuehaasgrotesk';
 
 // === Colors ===
 $white: #ffffff;
-$background: #121212;
+$grayDark: #121212;
+$grayLight: #767676;
+$background: $grayDark;
 $black: #000000;
 $pink: #F93251;
 $body: $white;

@@ -4,4 +4,61 @@
 .work-experience {
   background-color: $white;
   min-height: 100vh;
+  color: $grayDark;
+  padding-top: 120px;
+
+  .page-title {
+    color: $grayDark;
+  }
+
+  .close-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: $grayDark;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    padding: 19px 15px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: all 0.6s;
+    &::before {
+        content: "";
+        width: 26px;
+        height: 2px;
+        display: block;
+        background: #fff;
+        transform: rotate(-45deg);
+        position: absolute;
+        top: 50%;
+        left: 14px;
+        transition: all 0.2s;
+    }
+    &::after {
+        content: "";
+        width: 26px;
+        height: 2px;
+        display: block;
+        background: #fff;
+        transform: rotate(45deg);
+        position: absolute;
+        top: 50%;
+        left: 14px;
+        transition: all 0.2s;
+    }
+  }
+
+  @include tablet-portrait {
+    &_container {
+      margin: 0 auto;
+      max-width: 440px;
+    }
+  }
+
+  @include desktop {
+    .page-title {
+      font-size: rem(90);
+    }
+  }
 }

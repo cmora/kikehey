@@ -2,7 +2,11 @@ import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { isMobile } from 'react-device-detect';
+import { browserHistory } from 'react-router';
+import { bindActionCreators } from 'redux';
 import Menu from '../Menu/Menu';
+import { pageLoading } from '../../actions/pageActions';
+
 import './Header.scss';
 
 class Header extends React.Component {
@@ -41,7 +45,7 @@ class Header extends React.Component {
     const { prevScrollpos } = this.state;
     const currentScrollPos = window.pageYOffset;
     const visible = prevScrollpos > currentScrollPos;
-    
+
     if (prevScrollpos >= 0) {
       this.setState({
         visible,
@@ -58,9 +62,20 @@ class Header extends React.Component {
       open: !open,
     });
   }
-  
 
-  handleNavigation(toTop) {
+
+  handleNavigation(toTop, path) {
+    if (path) {
+      const { pageLoading } = this.props;
+      pageLoading(true);
+      setTimeout(() => {
+        browserHistory.push({
+          pathname: path,
+        });
+      }, 1000);
+      this.handleOpen();
+      return;
+    }
     setTimeout(() => {
       const { open } = this.state;
       this.setState({
@@ -81,7 +96,7 @@ class Header extends React.Component {
     const { social, projects, headerHidden } = this.props;
 
     if (headerHidden) return null;
-     
+
     return (
       <header
         id="header"
@@ -99,10 +114,10 @@ class Header extends React.Component {
           <span />
         </div>
         <Menu
-          open={open} 
-          handleOpen={this.handleOpen} 
-          handleNavigation={this.handleNavigation} 
-          projects={projects} 
+          open={open}
+          handleOpen={this.handleOpen}
+          handleNavigation={this.handleNavigation}
+          projects={projects}
           socialNetworks={social}
         />
       </header>
@@ -114,6 +129,13 @@ Header.propTypes = {
   projects: PropTypes.array.isRequired,
   social: PropTypes.array.isRequired,
   headerHidden: PropTypes.bool,
+  pageLoading: PropTypes.boo,
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    pageLoading: bindActionCreators(pageLoading, dispatch),
+  };
 };
 
 const mapStateToProps = (state) => {
@@ -121,7 +143,7 @@ const mapStateToProps = (state) => {
     projects: state.projects,
     social: state.social,
     headerHidden: state.page.headerHidden,
-  };  
+  };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

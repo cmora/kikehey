@@ -49,14 +49,17 @@ const Menu = ({
             </Link>
           </li>
           <li>
-            <Link
-              to={{
-                pathname: "/work-experience",
-              }}
-              onClick={() => handleNavigation(false)}
+            {/* <Link
+              // to={{
+              //   pathname: "/work-experience",
+              // }}
+              onClick={() => handleNavigation(false, true)}
             >
               <span>Work experience</span>
-            </Link>
+            </Link> */}
+            <a href="#" onClick={() => handleNavigation(false, '/work-experience')}>
+              <span>Work experience</span>
+            </a>
           </li>
           {projects.map((el, i) => {
             const category = get(el[0], 'category.name');

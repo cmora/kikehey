@@ -40,6 +40,7 @@
     }
   }
   @include desktop {
+    margin-bottom: 150px;
       a {
         font-size: rem(20);
         &:hover {

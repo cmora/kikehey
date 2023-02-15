@@ -188,6 +188,7 @@ h6 {
     }
   }
   @include desktop {
+    margin: 200px 0;
     &__title {
       margin-bottom: 46px;
       font-size: rem(90);

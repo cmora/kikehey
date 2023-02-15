@@ -39,6 +39,9 @@ class App extends React.Component {
           ]}
           meta={getMetaTags(this.props, '/')}
         />
+        <Helmet>
+          <meta property="og:image" content={meta.image} />
+        </Helmet>
         <Favicon url={ICON} />
         <Header />
         <Loader loading={loading} loaded={loaded} />

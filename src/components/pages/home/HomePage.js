@@ -10,6 +10,8 @@ import { pageLoading } from '../../../actions/pageActions';
 
 import './HomePage.scss';
 
+const downloadIcon = require('../../../assets/images/download.svg');
+
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
@@ -55,7 +57,6 @@ class HomePage extends React.Component {
 
   onHandleProject({ id, slug, externalUrl }) {
     const { pageLoading, history } = this.props;
-    console.log({externalUrl  });
     if (externalUrl) {
       window.open(externalUrl, '_blank').focus();
     } else {
@@ -73,6 +74,7 @@ class HomePage extends React.Component {
     const { experience, about, projects } = this.props;
     const projectKeys = Object.keys(projects);
     const aboutImage = get(about, 'image');
+    console.log(about);
     return (
       <div id="main">
         <div className="top-block">
@@ -107,6 +109,20 @@ class HomePage extends React.Component {
               );
             })
           }
+
+          {about.resume && (
+            <div className="row">
+              <div className="column">
+                <div className="button-resume">
+                  <a href={about.resume} target="_blank">
+                    Download my full resume here
+                    <img src={downloadIcon} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+
         </div>
       </div>
     );

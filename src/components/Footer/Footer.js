@@ -13,11 +13,13 @@ const Footer = ({
     <footer className="footer">
       <div className="row">
         <div className="column">
-          {footer && footer.body &&
-            /* eslint-disable react/no-danger */
-            <div dangerouslySetInnerHTML={{__html: documentToHtmlString(footer.body)}} />
-          }
-          <Social items={social} />
+          <div className="footer-containter">
+            {footer && footer.body &&
+              /* eslint-disable react/no-danger */
+              <div className="footer-text" dangerouslySetInnerHTML={{__html: documentToHtmlString(footer.body)}} />
+            }
+            <Social items={social} />
+          </div>
         </div>
       </div>
     </footer>
@@ -33,8 +35,7 @@ const mapStateToProps = (state) => {
   return {
     social: state.social,
     footer: state.sections['4mqxb8OMOopPLVyU1F1Ojq'],
-  };  
+  };
 };
 
 export default connect(mapStateToProps)(Footer);
- 

@@ -3,9 +3,38 @@
 
 .footer {
     margin: 50px auto 0;
-    padding: 30px 0 60px;
-    border-top: 1px solid #727272;
-    max-width: 1220px;
+
+    .footer-containter {
+      padding: 30px 0 60px;
+      border-top: 1px solid #4D4D4D;
+    }
+
+    &-text {
+      text-align: left;
+      position: relative;
+      padding-top: 70px;
+      margin-bottom: rem(48);
+
+      p {
+        font-size: rem(30);
+        line-height: rem(42);
+        font-family: $font-neue-haas-grotesk;
+      }
+
+
+      a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        background: url(../../assets/images/icon-send.svg);
+        background-size: 100%;
+        font-size: 0;
+        display: block;
+      }
+    }
+
     .social-networks {
         justify-content: left;
         &_item {
@@ -13,11 +42,34 @@
         }
     }
     @include desktop {
-        text-align: center;
+      &-text {
+        width: 65%;
+        padding-top: 0;
+        margin-bottom: rem(40);
+        p {
+          font-size: rem(50);
+          line-height: rem(62);
+        }
+
+        a {
+          width: 48px;
+          height: 48px;
+          display: inline-block;
+          transform: translate(10px, -10px);
+          position: inherit;
+        }
+      }
+
         .social-networks {
-            justify-content: center;
+            justify-content: left;
             &_item {
-                margin: 0 18px;
+              margin-right: 50px;
+
+              a {
+                .name {
+                  font-size: rem(16);
+                }
+              }
             }
         }
     }

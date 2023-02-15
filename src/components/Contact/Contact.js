@@ -8,7 +8,7 @@ import { BLOCKS } from '@contentful/rich-text-types';
 import { pageLoading } from '../../actions/pageActions';
 
 import Social from '../utils/Social/Social';
-const ICON_SEND = require('../../assets/images/icon-send.png');
+const ICON_SEND = require('../../assets/images/icon-send.svg');
 import './Contact.scss';
 
 const CONTACT_ICON = require('../../assets/images/icon-contact.svg');
@@ -52,11 +52,11 @@ class Contact extends React.Component {
     const message = document.getElementById('message').value;
     this.setState({ sending: true });
     axios({
-      method: "POST", 
-      url: "/contact", 
+      method: "POST",
+      url: "/contact",
       data: {
-        name,   
-        email,  
+        name,
+        email,
         subject,
         message,
       },
@@ -113,7 +113,7 @@ class Contact extends React.Component {
     if (!user) return null;
 
     return (
-      <div className="message-contact success"> 
+      <div className="message-contact success">
         <h4>Thanks.</h4>
         <h6>{user.name} - {user.email}</h6>
         <p>Your message has been successfully sent and i appreciate you contact me. I'll be in contact soon.</p>
@@ -152,7 +152,7 @@ class Contact extends React.Component {
                   className={classnames(
                     'contact-block_tite',
                     {
-                      ['animated fadeInUp'] : open, 
+                      ['animated fadeInUp'] : open,
                     }
                   )}
                 >
@@ -172,7 +172,7 @@ class Contact extends React.Component {
                   }
                 </div>
                 <Social items={social} />
-                {(showMessage && !sending) && 
+                {(showMessage && !sending) &&
                   this.renderMessage()
                 }
                 {(!showMessage && !sending) &&
@@ -195,7 +195,7 @@ class Contact extends React.Component {
   }
 }
 
- 
+
 Contact.propTypes = {
   social: PropTypes.array.isRequired,
   pageLoading: PropTypes.func,
@@ -206,7 +206,7 @@ const mapStateToProps = (state) => {
   return {
     social: state.social,
     contact: state.sections['1hRCdLWma9E8R6bEl8w8yo'],
-  };  
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

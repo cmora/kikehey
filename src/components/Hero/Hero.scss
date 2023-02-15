@@ -86,7 +86,6 @@
         &_img {
             width: 100%;
             height: auto;
-            // left: calc(50% - 700px);
         }
         &_arrow {
             display: none;
@@ -97,6 +96,12 @@
             right: -60px;
             margin: 0;
         }
+    }
+
+    @include desktopLarge {
+      &_img {
+        margin-top: -180px;
+      }
     }
 }
 

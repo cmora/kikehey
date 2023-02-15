@@ -135,20 +135,21 @@ h6 {
 .content-block {
   margin: 120px 0;
   &__title {
-    max-width: 50%;
+    max-width: 90%;
+    font-size: rem(40);
     &::after {
       content: '';
       display: block;
       width: 70px;
       height: 5px;
       background-color: $pink;
-      margin-top: 5px;
+      margin-top: 0.5rem;
     }
   }
   &__description {
-    p {
-      font-size: rem(16);
-    }
+    font-size: rem(18);
+    font-weight: 700;
+    margin: rem(24) 0;
   }
   &__icon {
     position: relative;
@@ -189,10 +190,16 @@ h6 {
   @include desktop {
     &__title {
       margin-bottom: 46px;
+      font-size: rem(90);
       &::after {
         width: 120px;
         height: 7px;
+        margin-top: rem(24);
       }
+    }
+    &__description {
+      font-size: rem(20);
+      margin: rem(48) 0 rem(32);
     }
     &__icon {
       display: none;
@@ -253,6 +260,54 @@ h6 {
       &::before {
         opacity: 0.2;
       }
+    }
+  }
+
+  .slick-dots {
+    position: relative;
+    display: flex !important;
+    list-style: none;
+    margin-top: rem(32);
+
+    li {
+      margin: 0;
+      display: flex;
+
+      button {
+        background: 0;
+        border: none;
+        padding: 2px;
+        text-indent: -99990px;
+        position: relative;
+        width: 12px;
+        font-size: 0;
+        cursor: pointer;
+
+        &::before {
+          content: "";
+          display: block;
+          width: 6px;
+          height: 6px;
+          background: #D8D8D8;
+          border-radius: 50%;
+          transition: all 0.2s;
+          opacity: 0.8;
+        }
+      }
+
+      &.slick-active {
+        button:before {
+          background-color: #fff;
+          opacity: 1;
+        }
+      }
+    }
+
+    @include desktop {
+      align-items: center;
+      justify-content: center;
+
+      margin-top: rem(16);
     }
   }
 }

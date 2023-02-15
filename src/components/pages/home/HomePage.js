@@ -55,6 +55,7 @@ class HomePage extends React.Component {
 
   onHandleProject({ id, slug, externalUrl }) {
     const { pageLoading, history } = this.props;
+    console.log({externalUrl  });
     if (externalUrl) {
       window.open(externalUrl, '_blank').focus();
     } else {
@@ -95,7 +96,13 @@ class HomePage extends React.Component {
               const categoryId = camelize(category);
               return (
                 <div key={categoryId} ref={(element) => this[categoryId] = element}>
-                  <Projects title={category} description={categoryDescription} projects={projects[key]} onHandleProject={this.onHandleProject} />
+                  <Projects
+                    categoryId={categoryId}
+                    description={categoryDescription}
+                    onHandleProject={this.onHandleProject}
+                    projects={projects[key]}
+                    title={category}
+                  />
                 </div>
               );
             })

@@ -1,0 +1,41 @@
+@import "../../../assets/styles/variables/global";
+@import "../../../assets/styles/mixins/utils";
+
+.carousel-story-item {
+    position: relative;
+
+    &_wrap {
+        padding: 8px;
+        display: flex;
+        background-color: #202124;
+        border-radius: 8px;
+        transition: all 0.2s;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #424242;
+        }
+    }
+
+    &_media {
+        border-radius: 10px;
+        width: 100px;
+        overflow: hidden;
+    }
+
+    &_text {
+        flex: 1;
+        padding-left: 8px;
+
+        p {
+            font-size: rem(16);
+            margin-bottom: 0;
+            max-height: 100px;
+            overflow: hidden;
+            line-height: 1.5;
+        }
+    }
+    @include desktop {
+        margin-bottom: 20px;
+    }
+}

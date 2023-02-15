@@ -74,4 +74,3 @@ CarouselProjects.propTypes = {
 };
 
 export default CarouselProjects;
- 

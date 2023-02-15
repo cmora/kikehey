@@ -59,7 +59,7 @@ export const formatExperience = (data) => {
 export const formatProjects = (data) => {
   const projects = [];
   data.map(item => projects.push(formatProject(item)));
-  const orderedByDate = orderBy(projects, elem => elem.publishedDate, 'desc')
+  const orderedByDate = orderBy(projects, elem => elem.publishedDate, 'desc');
   const groupedByCategory = orderBy(groupBy(orderedByDate, 'category.name'), elem => elem[0].category.order);
   return groupedByCategory;
 };

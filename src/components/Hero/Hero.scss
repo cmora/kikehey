@@ -22,6 +22,9 @@
     &_image {
         width: 100%;
         display: inline-flex;
+        @include desktop {
+          align-items: center;
+        }
     }
     .logo-container {
       display: flex;

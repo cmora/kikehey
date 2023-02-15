@@ -22,6 +22,7 @@ class App extends React.Component {
     if (meta) {
       window.prerenderReady = true;
     }
+
     return (
       <div id="wrapper">
         <Helmet

@@ -8,10 +8,7 @@ import Logo from '../Logo/Logo';
 const downloadIcon = require('../../assets/images/download.svg');
 
 const About = ({
-  title,
   body,
-  resume,
-  experience,
 }) => (
   <div className="about-block content-block">
     <div className="row">
@@ -23,15 +20,6 @@ const About = ({
           /* eslint-disable react/no-danger */
           <div className="content-block__description" dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}} />
         }
-        {/* <Experience items={experience} />
-        {resume &&
-          <div className="about-block_resume">
-            <a href={resume} target="_blank">
-              DOWNLOAD MY FULL RESUME
-              <img src={downloadIcon} />
-            </a>
-          </div>
-        } */}
       </div>
     </div>
   </div>

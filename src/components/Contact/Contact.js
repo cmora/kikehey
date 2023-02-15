@@ -150,7 +150,7 @@ class Contact extends React.Component {
               <div className="column">
                 <h2
                   className={classnames(
-                    'contact-block_tite',
+                    'contact-block_title',
                     {
                       ['animated fadeInUp'] : open,
                     }

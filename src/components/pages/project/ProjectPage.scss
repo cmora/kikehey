@@ -97,9 +97,9 @@
     &_body {
         background: $white;
         padding: 0 0 25px;
-        max-width: 1040px;
+        max-width: 680px;
         border-radius: 0 0 5px 5px;
-        color: $black;
+        color: $grayAlt;
         font-size: rem(16);
         line-height: rem(26);
         @include desktop {
@@ -109,11 +109,11 @@
             line-height: rem(28);
         }
         &__title {
-            color: $black;
+            color: $grayAlt;
             font-size: rem(30);
             margin-bottom: 5px;
             @include desktop {
-                font-size: rem(38);
+                font-size: rem(48);
             }
         }
         &__company {
@@ -141,7 +141,7 @@
         }
 
         h1 , h2, h3, h4, h5, h6 {
-            color: $black;
+            color: $grayAlt;
             font-family: $font-helvetica;
             text-transform: none;
             margin: 20px 0;
@@ -246,7 +246,7 @@
         }
         @include desktop {
             padding: 40px 0 0;
-            max-width: 1040px;
+            max-width: 680px;
             margin: 0 auto;
         }
     }

@@ -123,6 +123,7 @@ class ProjectPage extends React.Component {
 
   render () {
     const { project, pageLoading, location } = this.props;
+
     if (project && has(project, 'title') ) {
       pageLoading(false);
     }

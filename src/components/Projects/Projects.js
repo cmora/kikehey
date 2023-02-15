@@ -23,11 +23,11 @@ class Projects extends React.Component {
   render () {
     const { flavor } = this.state;
     const {
-      description,
-      title,
-      projects,
-      onHandleProject,
       categoryId,
+      description,
+      onHandleProject,
+      projects,
+      title,
     } = this.props;
 
     const isCarouselStories = categoryId === 'designStories';
@@ -72,10 +72,11 @@ class Projects extends React.Component {
 }
 
 Projects.propTypes = {
-  title: PropTypes.string,
+  categoryId: PropTypes.string,
   description: PropTypes.string,
-  projects: PropTypes.array,
   onHandleProject: PropTypes.func,
+  projects: PropTypes.array,
+  title: PropTypes.string,
 };
 
 export default Projects;

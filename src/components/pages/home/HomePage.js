@@ -74,7 +74,7 @@ class HomePage extends React.Component {
     const { experience, about, projects } = this.props;
     const projectKeys = Object.keys(projects);
     const aboutImage = get(about, 'image');
-    console.log(about);
+
     return (
       <div id="main">
         <div className="top-block">
@@ -110,7 +110,7 @@ class HomePage extends React.Component {
             })
           }
 
-          {about.resume && (
+          {about && about.resume && (
             <div className="row">
               <div className="column">
                 <div className="button-resume">
@@ -122,7 +122,6 @@ class HomePage extends React.Component {
               </div>
             </div>
           )}
-
         </div>
       </div>
     );

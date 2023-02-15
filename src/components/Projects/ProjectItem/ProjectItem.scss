@@ -81,4 +81,8 @@
         line-height: 1.3;
         text-transform: none;
     }
+
+    @include desktop {
+      margin-bottom: 20px;
+    }
 }

@@ -9,12 +9,18 @@ const ProjectItem = ({
   onHandleProject,
 }) => {
   if (!item) return null;
-  
+
+  const onPressHandler = () => {
+    if (onHandleProject) {
+      onHandleProject(item);
+    }
+  };
+
   return (
     <div className={`project-item wow fadeInUp ${flavor} ${isMobile ? `${flavor}-mobile` : null}`}>
       <div
         className="project-item_content"
-        onClick={() => onHandleProject && onHandleProject(item)}
+        onClick={onPressHandler}
       >
         <div className="project-item_image">
           <img src={item.thumbnail} />
@@ -26,12 +32,7 @@ const ProjectItem = ({
             )}
           </div>
         </div>
-        {!isMobile && (
-          <h5 className="project-item_title">
-            {item.title}
-          </h5>
-        )}
-      </div> 
+      </div>
     </div>
   );
 };
@@ -47,4 +48,3 @@ ProjectItem.defaultProps = {
 };
 
 export default ProjectItem;
- 

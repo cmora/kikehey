@@ -19,12 +19,10 @@ const About = ({
         <div className="logo-container">
           <Logo />
         </div>
-        <div className="content-block__description">
-          {body &&
-            /* eslint-disable react/no-danger */
-            <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}} />
-          }
-        </div>
+        {body &&
+          /* eslint-disable react/no-danger */
+          <div className="content-block__description" dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}} />
+        }
         {/* <Experience items={experience} />
         {resume &&
           <div className="about-block_resume">

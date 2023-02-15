@@ -133,7 +133,7 @@ h6 {
 
 // CONTENT BLOCKS
 .content-block {
-  margin: 120px 0;
+  margin: 100px 0;
   &__title {
     max-width: 90%;
     font-size: rem(40);
@@ -156,11 +156,11 @@ h6 {
     width: 100%;
     > div {
       width: 40px;
-      height: 40px;
+      height: 20px;
       display: flex;
       justify-content: center;
       position: absolute;
-      bottom: 22px;
+      bottom: 38px;
       right: 0;
       transition: all .2s;
       opacity: 0;

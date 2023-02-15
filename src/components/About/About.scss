@@ -19,18 +19,25 @@
     }
 
     .content-block__description {
+      margin-bottom: 0;
         h3 {
             font-size: rem(26);
-            margin: 56px 0;
+            margin: 56px 0 0;
         }
 
         p {
           font-weight: 400;
+          font-size: rem(18);
+          line-height: rem(24);
+        }
+
+        *:last-child {
+          margin-bottom: 0;
         }
 
         @include desktop {
             p {
-                font-size: rem(16);
+              line-height: rem(26);
             }
 
             h3 {
@@ -39,9 +46,6 @@
         }
 
         @include desktopLarge {
-            p {
-                font-size: rem(18);
-            }
 
             h3 {
                 font-size: rem(40);

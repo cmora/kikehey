@@ -29,10 +29,10 @@
 
         p {
             font-size: rem(16);
+            line-height: rem(22);
             margin-bottom: 0;
             max-height: 100px;
             overflow: hidden;
-            line-height: 1.5;
         }
     }
     @include desktop {

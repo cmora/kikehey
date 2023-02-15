@@ -24,6 +24,10 @@
             margin: 56px 0;
         }
 
+        p {
+          font-weight: 400;
+        }
+
         @include desktop {
             p {
                 font-size: rem(16);

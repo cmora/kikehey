@@ -56,10 +56,10 @@ class Projects extends React.Component {
               <CarouselStories items={projects} onHandleProject={onHandleProject} />
             ) : (
               <div>
-                {flavor === 'carousel' || isCarouselStories && (
+                {flavor === 'carousel' && (
                   <CarouselProjects items={projects} onHandleProject={onHandleProject} />
                 )}
-                {flavor === 'grid' && !isCarouselStories && (
+                {flavor === 'grid' && (
                   <GridProjects items={projects} onHandleProject={onHandleProject} />
                 )}
               </div>
